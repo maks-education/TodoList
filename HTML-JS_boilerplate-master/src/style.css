@@ -1,0 +1,74 @@
+
+html {
+  background-image: url(https://images.wallpaperscraft.ru/image/single/gory_vershiny_tuman_128806_3840x2400.jpg); /*https://miro.medium.com/max/12032/1*UsZeI4d6ZkNna8HmukQ78A.jpeg/* https://mota.ru/upload/wallpapers/source/2015/11/19/17/02/46448/mota.ru_20151119030.jpg https://www.wallpapertip.com/wmimgs/29-291156_nebula-digital-art.jpg*/
+  background-size: cover;
+}
+
+
+
+
+body{
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+   ;
+
+
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 0 30px;
+  /* background-image: url('../red-mountain-range-highlands-8k-9n-3840x2400.jpg'); */
+  
+}
+
+@media screen and (min-width: 1190px) {
+  .container{
+    max-width: 950px;
+    padding: 0 30px;
+  }
+}
+
+
+
+
+
+@import url(./style/logo.css); /*стиль логотипа*/ 
+
+@import url(./style/create-New-task.css); /*стиль поля для создания задачи ("task")*/
+
+@import url(./style/open-task.css); /*стиль секции "open" */
+
+@import url(./style/done-task.css); /*стиль секции "done" */
+
+@import url(./style/task-o.css); /*стиль блока задачи в списке "open"*/
+
+@import url(./style/text-welcome-open-done.css); /* стиль блока "У вас нет открытых задач*/
+
+@import url(./style/task-d.css); /*стиль блока задачи в списке "done"*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

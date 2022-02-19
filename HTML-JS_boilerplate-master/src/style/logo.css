@@ -1,0 +1,49 @@
+
+
+.Todo-List-header{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: rgb(4, 0, 250); */
+    padding: 10px 40px;
+    color: white;
+  }
+  
+  .logo {
+    padding: 5px 30px 5px 30px;
+    font-weight: 800;
+     font-size: 30px;
+     font-family: 'Roboto', sans-serif;
+     margin-left: 50px;
+     border-radius: 15px;
+     background-color: rgb(31, 31, 201);
+     
+  }
+  
+  .search{
+    background: none;
+    border-color: white;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    outline: none;
+    width: 150px;
+    margin-top: 25px;
+    color: white;
+  }
+  
+  .search-wrapper{
+    display: flex;
+  }
+  
+  .search-icon-wrapper{
+    border-bottom: 1px solid white;
+    display: flex;
+    margin-top: 24px;
+    transition:  450ms ;
+    
+  }
+  
+  .search::placeholder {
+    color: white;
+    font-size: 16px;
+    font-style: oblique;
+  }

@@ -1,0 +1,45 @@
+
+
+.div-text-welcome-open{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 25px 150px 0px 150px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 15px 2px rgba(57, 69, 79, 0.2);
+    -moz-box-shadow: 0px 0px 15px 2px rgba(57, 69, 79, 0.2);
+    box-shadow: 0px 0px 15px 2px rgba(57, 69, 79, 0.2);
+    font-size: 115%;
+}
+
+.text-Welcome-Open{
+    
+    display:flex;
+    justify-content: center;
+    font-style: italic;
+    color: grey;
+
+}
+
+
+
+.div-text-welcome-Done{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 25px 150px 0px 150px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 15px 2px rgba(57, 69, 79, 0.2);
+    -moz-box-shadow: 0px 0px 15px 2px rgba(57, 69, 79, 0.2);
+    box-shadow: 0px 0px 15px 2px rgba(57, 69, 79, 0.2);
+    font-size: 115%;
+}
+
+.text-Welcome-Done{
+    
+    display:flex;
+    justify-content: center;
+    font-style: italic;
+    color: grey;
+
+}
