@@ -44,4 +44,5 @@
   
   .clear-done:hover {
     color: #ff0000;
+    cursor: pointer;
   }

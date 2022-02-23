@@ -47,4 +47,5 @@
   
   .clear-open:hover {
       color: #ff0000;
+      cursor: pointer;
   }
