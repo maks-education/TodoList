@@ -26,30 +26,27 @@ divTextWelcomeDone.appendChild(WelcomeDone)
 textWelcomeDoneTask.appendChild(divTextWelcomeDone)
 
 
-
+const openTaskopenSelection = document.querySelector('.task-open');
+  const openTaskdoneSelection = document.querySelector('.task-done');
 
 let counterOpen = 0  //счётчики
 let counterDone = 0
  
 const newTaskButton = document.querySelector('.ADD')
+let lastTaskid = 0;
 newTaskButton.onclick = function () {
-  const openTaskopenSelection = document.querySelector('.task-open');
-  const openTaskdoneSelection = document.querySelector('.task-done');
-// addWelcomeOpen()
   
-  function counterOpens() {  // при нажатии +1 в counterOpen
-    counterOpen++
-  }
-  counterOpens()
-  console.log(counterOpens)
-console.log(counterOpen + 'Open') 
+  
+
+
 
 
   divTextWelcomeOpen.remove()
 
   const newTask = document.createElement('div')
   newTask.classList.add('task-o')
-
+  newTask.setAttribute('data-id', lastTaskid)
+  lastTaskid++
 
   const label = document.createElement('label')
   label.classList.add('checkbox')
@@ -61,23 +58,10 @@ console.log(counterOpen + 'Open')
     if (checkbox.checked) {
       openTaskopenSelection.removeChild(newTask)
       openTaskdoneSelection.appendChild(newTask)
-      // divTextWelcomeDone.remove() //эту строчку я использовал для теста, но пока не убирал, 
-                                    //так как она ещё нужна
-      // addWelcomeOpen()
-      counterOpen-- // -1 у counterOpen
-      counterDone++ // +1 у counterDone
-      console.log(counterOpen + 'Open')
-      console.log(counterDone + 'Done')
     }
     else {
       openTaskdoneSelection.removeChild(newTask)
       openTaskopenSelection.appendChild(newTask)
-      counterOpen++ // +1 у counterOpen
-      counterDone-- // -1 у counterDone
-      // addWelcomeOpen()
-      
-      console.log(counterOpen + 'Open')
-      console.log(counterDone + 'Done')
     }
   } 
   
@@ -105,6 +89,7 @@ console.log(counterOpen + 'Open')
   const divTime = document.createElement ('div')
   const divTimeOpen = document.createElement('div')
   divTimeOpen.classList.add('time-open')
+  divTimeOpen.setAttribute('data-value', new Date())
   divTimeOpen.textContent = new Date().toLocaleTimeString('ru', {hour: '2-digit', minute: '2-digit', second: '2-digit'})
   
   const divTimeDone = document.createElement ('div')
@@ -173,13 +158,31 @@ z
   
 }
 
-// function addWelcomeOpen() {
-//   if (counterOpen == 0){
-//     textWelcomeOpenTask.appendChild(divTextWelcomeOpen)
-//     console.log(divTextWelcomeOpen)
-//   } else{
-//     textWelcomeOpenTask.removeChild(divTextWelcomeOpen)
-//   }
-// }
+
+
+let openSelect = document.querySelector('.option-open')
+openSelect.addEventListener('change', function(){
+    let isAsc = openSelect.value == 'asc'
+    console.log(isAsc)
+    let tasksElements = document.querySelectorAll('.task-open .task-o')
+    let tasksElementsArray = Array.from(tasksElements)
+    let dates = {}
+    for (let i = 0; i<tasksElements.length; i++){
+      let dateElement = tasksElements[i].querySelector('.time-open')
+      let date = Date.parse(dateElement.getAttribute('data-value'))
+      let id = tasksElements[i].getAttribute('data-id')
+      dates[id] = date
+    } console.log(dates)
+    tasksElementsArray.sort((el1, el2) =>{
+      return isAsc 
+      ? dates[el2.getAttribute('data-id')] - dates[el1.getAttribute('data-id')]
+      : dates[el1.getAttribute('data-id')] - dates[el2.getAttribute('data-id')]
+    })
+    openTaskopenSelection.innerHTML =""
+    tasksElementsArray.forEach((el) =>{
+      openTaskopenSelection.appendChild(el)
+    })
+    
+})
 
 

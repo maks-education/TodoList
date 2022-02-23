@@ -62,6 +62,10 @@
     
   }
 
+  .task-o .trash:hover {
+    color: red;
+  }
+
   
 
   /* .task-o .trash-but:hover .trash-but {
