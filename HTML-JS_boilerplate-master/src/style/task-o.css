@@ -24,6 +24,7 @@
   
   
   .task-o .task-to {
+    max-width: 75px;
     right: 250px;
     left: 250px;
     display: flex;

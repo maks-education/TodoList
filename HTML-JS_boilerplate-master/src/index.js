@@ -94,6 +94,7 @@ newTaskButton.onclick = function () {
   
   const divTimeDone = document.createElement ('div')
   divTimeDone.classList.add('time-done')
+  divTimeDone.setAttribute('data-value', new Date())
   
   
    
@@ -182,7 +183,10 @@ openSelect.addEventListener('change', function(){
     tasksElementsArray.forEach((el) =>{
       openTaskopenSelection.appendChild(el)
     })
-    
+
 })
+
+
+
 
 
