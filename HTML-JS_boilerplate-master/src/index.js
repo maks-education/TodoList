@@ -46,7 +46,7 @@ newTaskButton.onclick = function () {
   const newTask = document.createElement('div')
   newTask.classList.add('task-o')
   newTask.setAttribute('data-id', lastTaskid)
-  lastTaskid++
+  
 
   const label = document.createElement('label')
   label.classList.add('checkbox')
@@ -83,7 +83,7 @@ newTaskButton.onclick = function () {
     input.focus()
 
     input.onblur = function() {
-      divText.TextContent = input.value
+      divText.textContent = input.value
     }
   }
   const divTime = document.createElement ('div')
@@ -138,7 +138,7 @@ newTaskButton.onclick = function () {
   clearDone.ondblclick = function(){
     openTaskdoneSelection.innerHTML= ''
 
-z
+
     
   }
 
@@ -156,7 +156,13 @@ z
   
   
   openTaskopenSelection.appendChild(newTask)
-  
+  localStorage.setItem('tasks', JSON.stringify({
+    id: lastTaskid,
+    title: divText.textContent,
+    creationDate: divTimeOpen.getAttribute('data-value'),
+    completeDate: null,
+  }))
+  lastTaskid++
 }
 
 function sortTaskBydate (tasksElements) {
