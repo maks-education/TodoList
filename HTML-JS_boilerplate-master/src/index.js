@@ -1,5 +1,5 @@
 import './style.css';
-
+import './done-sort.js'
 
 const textWelcomeOpenTask = document.querySelector('.task-open');
 const textWelcomeDoneTask = document.querySelector('.task-done');
@@ -29,8 +29,7 @@ textWelcomeDoneTask.appendChild(divTextWelcomeDone)
 const openTaskopenSelection = document.querySelector('.task-open');
   const openTaskdoneSelection = document.querySelector('.task-done');
 
-let counterOpen = 0  //счётчики
-let counterDone = 0
+
  
 const newTaskButton = document.querySelector('.ADD')
 let lastTaskid = 0;
@@ -43,6 +42,53 @@ newTaskButton.onclick = function () {
 
   divTextWelcomeOpen.remove()
 
+  drawTask({
+    title: document.querySelector('.newTaskname').value
+  })
+  
+  addTaskToLocaleStorage({
+    id: lastTaskid,
+    title: document.querySelector('.newTaskname').value,
+    creationDate: new Date().toLocaleTimeString('ru', {hour: '2-digit', minute: '2-digit', second: '2-digit'}),
+    completeDate: null,
+  })
+
+  lastTaskid++
+}
+
+
+function addTaskToLocaleStorage(taskObject) {
+  let baseloacal = localStorage.getItem('task')
+   let tasks 
+  if(baseloacal == null){
+    tasks = []
+  } else {
+    tasks = JSON.parse(baseloacal)
+  }
+  tasks.push(taskObject)
+  localStorage.setItem('task', JSON.stringify(tasks))
+}
+
+
+let tasks = localStorage.getItem('task')
+
+if (tasks != null) {
+  let tasksParsed = JSON.parse(tasks)
+
+  for(let i = 0; i < tasksParsed.length; i++){
+    drawTask(tasksParsed[i])
+  }
+}
+
+
+
+  
+ 
+  
+
+
+
+function drawTask (task) {
   const newTask = document.createElement('div')
   newTask.classList.add('task-o')
   newTask.setAttribute('data-id', lastTaskid)
@@ -71,7 +117,7 @@ newTaskButton.onclick = function () {
   const divText = document.createElement('div')
   divText.classList.add('text-to')
   divText.setAttribute('id', "taskto")
-  divText.textContent = document.querySelector('.newTaskname').value
+  divText.textContent = task.title
 
   divText.ondblclick = function (){
     let text = divText.textContent
@@ -154,176 +200,12 @@ newTaskButton.onclick = function () {
   
   
   openTaskopenSelection.appendChild(newTask)
-  localStorage.setItem(`${'task'} ${lastTaskid}`, JSON.stringify({
-    id: lastTaskid,
-    title: divText.textContent,
-    creationDate: divTimeOpen.getAttribute('data-value'),
-    completeDate: null,
-  }))
-  lastTaskid++
+  
+
+  
 }
 
-
-function BaseParstask () {
-  let counterlocalStorage = localStorage.length
-  if (counterlocalStorage == 1) {
-    console.log('localeStorageclean')
-  }else {
-const basetask = document.createElement('div')
-basetask.classList.add('task-o')
-
-const basedivLabelText = document.createElement('div')
-basedivLabelText.classList.add('label-text')
-
-const baselabel = document.createElement('label')
-  baselabel.classList.add('checkbox')
-
-  const basecheckbox = document.createElement('input');
-  basecheckbox.setAttribute('type', 'checkbox')
-
-  basecheckbox.onchange = function() {
-    if (checkbox.checked) {
-      openTaskopenSelection.removeChild(newTask)
-      openTaskdoneSelection.appendChild(newTask)
-    }
-    else {
-      openTaskdoneSelection.removeChild(newTask)
-      openTaskopenSelection.appendChild(newTask)
-    }
-  } 
-
-  const BasedivText = document.createElement('div')
-  BasedivText.classList.add('text-to')
-  BasedivText.setAttribute('id', "taskto")
-  BasedivText.textContent = document.querySelector('.newTaskname').value
-
-  BasedivText.ondblclick = function (){
-    let text = divText.textContent
-    let input = document.createElement('input')
-    input.setAttribute('type', 'text')
-    input.value = text 
-    divText.textContent = ''
-    divText.appendChild(input)
-    input.focus()
-
-    input.onblur = function() {
-      divText.textContent = input.value
-    }
-  }  
-
-  
-
-  // function TextBaseLocal() {
-  //   for(let title in localStorage.va) {
-  //     textLocal = value
-  //   } console.log (textLocal)
-  // } TextBaseLocal()
-  
-
-
-  // const baseText = document.createElement('div')
-  // baseText.classList.add('text-to')
-  // baseText.setAttribute('id', "taskto")
-  // baseText.textContent = textLocal
-  
-  openTaskopenSelection.appendChild(basetask)
-
-  basetask.appendChild(baselabel)
-  baselabel.appendChild(basecheckbox)
-}} BaseParstask()
-  
-for(let key in localStorage.getItem(key)) {
-  if (!localStorage.hasOwnProperty(key)) {
-    continue; // пропустит такие ключи, как "setItem", "getItem" и так далее
-  }
-  alert(`${key}: ${localStorage.getItem(key)}`);
-}
-
-// for(let i=0; i<localStorage.length; i++) {
-//   let key = localStorage.key(i);
-//   alert(`${localStorage.getItem(key)}`);
-// }
-
-
-
-
-function sortTaskBydate (tasksElements) {
-  let isAsc = openSelect.value== "asc"
-    let dates = {}
-    for (let i = 0; i<tasksElements.length; i++){
-      let dateElement = tasksElements[i].querySelector('.time-open')
-      let date = Date.parse(dateElement.getAttribute('data-value'))
-      let id = tasksElements[i].getAttribute('data-id')
-      dates[id] = date
-    }
-    tasksElements.sort((el1, el2) =>{
-      return isAsc 
-      ? dates[el2.getAttribute('data-id')] - dates[el1.getAttribute('data-id')]
-      : dates[el1.getAttribute('data-id')] - dates[el2.getAttribute('data-id')]
-    })
-
-}
-
-function sortTaskBytext(tasksElements) {
-  let isAsc = openSelect.value == 'asc-text'
-   tasksElements.sort((el1, el2) =>{
-     let isMore = el2.querySelector('.text-to').textContent.toLowerCase() > el1.querySelector('.text-to').textContent.toLowerCase()
-     if (isAsc){
-      return isMore
-      ? 1
-      : -1
-     } else {
-      return isMore
-      ? -1
-      : 1
-     }
-   })
-}
-
-let openSelect = document.querySelector('.option-open')
-openSelect.addEventListener('change', function(){
-  let tasksElements = document.querySelectorAll('.task-open .task-o')
-    let tasksElementsArray = Array.from(tasksElements)
-    let isTextSorting = ['asc-text', 'desc-text'].includes(openSelect.value)
-    if (isTextSorting){
-      sortTaskBytext(tasksElementsArray)
-    } else {
-      sortTaskBydate(tasksElementsArray)
-    }
-   
-  
-    openTaskopenSelection.innerHTML =""
-    tasksElementsArray.forEach((el) =>{
-      openTaskopenSelection.appendChild(el)
-    })
-
-})
-
-let doneSelect = document.querySelector('.option-done')
-doneSelect.addEventListener('change', function(){
-    let isAsc = doneSelect.value == 'asc'
-    let tasksElements = document.querySelectorAll('.task-done .task-o')
-    let tasksElementsArray = Array.from(tasksElements)
-    let dates = {}
-    for (let i = 0; i<tasksElements.length; i++){
-      let dateElement = tasksElements[i].querySelector('.time-done')
-      let date = Date.parse(dateElement.getAttribute('data-value'))
-      let id = tasksElements[i].getAttribute('data-id')
-      dates[id] = date
-    } console.log(dates)
-    tasksElementsArray.sort((el1, el2) =>{
-      return isAsc 
-      ? dates[el2.getAttribute('data-id')] - dates[el1.getAttribute('data-id')]
-      : dates[el1.getAttribute('data-id')] - dates[el2.getAttribute('data-id')]
-    })
-    openTaskdoneSelection.innerHTML =""
-    tasksElementsArray.forEach((el) =>{
-      openTaskdoneSelection.appendChild(el)
-    })
-
-})
-
-
+// localStorage.clear()
 
 
 
