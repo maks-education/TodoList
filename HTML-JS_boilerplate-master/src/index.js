@@ -147,8 +147,6 @@ newTaskButton.onclick = function () {
   divTrash.appendChild(itrash)
   trashButton.appendChild(divTrash)
   divTime.appendChild(divTimeOpen)
-  
-
   newTask.appendChild(label)
   newTask.appendChild(divText)
   newTask.appendChild(divTime)
@@ -156,7 +154,7 @@ newTaskButton.onclick = function () {
   
   
   openTaskopenSelection.appendChild(newTask)
-  localStorage.setItem('tasks', JSON.stringify({
+  localStorage.setItem(`${'task'} ${lastTaskid}`, JSON.stringify({
     id: lastTaskid,
     title: divText.textContent,
     creationDate: divTimeOpen.getAttribute('data-value'),
@@ -164,6 +162,90 @@ newTaskButton.onclick = function () {
   }))
   lastTaskid++
 }
+
+
+function BaseParstask () {
+  let counterlocalStorage = localStorage.length
+  if (counterlocalStorage == 1) {
+    console.log('localeStorageclean')
+  }else {
+const basetask = document.createElement('div')
+basetask.classList.add('task-o')
+
+const basedivLabelText = document.createElement('div')
+basedivLabelText.classList.add('label-text')
+
+const baselabel = document.createElement('label')
+  baselabel.classList.add('checkbox')
+
+  const basecheckbox = document.createElement('input');
+  basecheckbox.setAttribute('type', 'checkbox')
+
+  basecheckbox.onchange = function() {
+    if (checkbox.checked) {
+      openTaskopenSelection.removeChild(newTask)
+      openTaskdoneSelection.appendChild(newTask)
+    }
+    else {
+      openTaskdoneSelection.removeChild(newTask)
+      openTaskopenSelection.appendChild(newTask)
+    }
+  } 
+
+  const BasedivText = document.createElement('div')
+  BasedivText.classList.add('text-to')
+  BasedivText.setAttribute('id', "taskto")
+  BasedivText.textContent = document.querySelector('.newTaskname').value
+
+  BasedivText.ondblclick = function (){
+    let text = divText.textContent
+    let input = document.createElement('input')
+    input.setAttribute('type', 'text')
+    input.value = text 
+    divText.textContent = ''
+    divText.appendChild(input)
+    input.focus()
+
+    input.onblur = function() {
+      divText.textContent = input.value
+    }
+  }  
+
+  
+
+  // function TextBaseLocal() {
+  //   for(let title in localStorage.va) {
+  //     textLocal = value
+  //   } console.log (textLocal)
+  // } TextBaseLocal()
+  
+
+
+  // const baseText = document.createElement('div')
+  // baseText.classList.add('text-to')
+  // baseText.setAttribute('id', "taskto")
+  // baseText.textContent = textLocal
+  
+  openTaskopenSelection.appendChild(basetask)
+
+  basetask.appendChild(baselabel)
+  baselabel.appendChild(basecheckbox)
+}} BaseParstask()
+  
+for(let key in localStorage.getItem(key)) {
+  if (!localStorage.hasOwnProperty(key)) {
+    continue; // пропустит такие ключи, как "setItem", "getItem" и так далее
+  }
+  alert(`${key}: ${localStorage.getItem(key)}`);
+}
+
+// for(let i=0; i<localStorage.length; i++) {
+//   let key = localStorage.key(i);
+//   alert(`${localStorage.getItem(key)}`);
+// }
+
+
+
 
 function sortTaskBydate (tasksElements) {
   let isAsc = openSelect.value== "asc"
