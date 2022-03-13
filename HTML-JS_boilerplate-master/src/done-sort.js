@@ -1,6 +1,6 @@
 
-const openTaskopenSelection = document.querySelector('.task-open');
-const openTaskdoneSelection = document.querySelector('.task-done');
+const openTaskopenSelection = document.querySelector('.task-open .tasks');
+const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 
 
 
