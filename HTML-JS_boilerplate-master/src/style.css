@@ -54,8 +54,7 @@ body{
 
 @import url(./style/text-welcome-open-done.css); /* стиль блока "У вас нет открытых задач*/
 
-@import url(./style/task-d.css); /*стиль блока задачи в списке "done"*/
-
+@import url(./style/tasks.css);
 
 
 
