@@ -1,7 +1,6 @@
 
 
 .tasks {
-    width: 1200px;
     max-height: 270px;
     overflow: auto;
 }

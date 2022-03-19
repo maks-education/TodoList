@@ -12,7 +12,9 @@ export function drawTask (task) {
     newTask.classList.add('task-o')
     newTask.setAttribute('data-id', task.id)
     
-  
+    const checkboxTextTask = document.createElement('div')
+    checkboxTextTask.classList.add('checkboxTextTask')
+
     const label = document.createElement('label')
     label.classList.add('checkbox')
   
@@ -29,6 +31,7 @@ export function drawTask (task) {
     divText.ondblclick = function (){
       let text = divText.textContent
       let input = document.createElement('input')
+      input.classList.add('inputTextTask')
       input.setAttribute('type', 'text')
       input.value = text 
       divText.textContent = ''
@@ -39,13 +42,17 @@ export function drawTask (task) {
         divText.textContent = input.value
       }
     }
+    
+    const divTimeAndTrash = document.createElement('div')
+    divTimeAndTrash.classList.add('divTimeAndTrash')
+
     const divTime = document.createElement ('div')
+    divTime.classList.add('time')
+
     const divTimeOpen = document.createElement('div')
     divTimeOpen.classList.add('time-open')
     divTimeOpen.setAttribute('data-value', task.creationDate) 
-    console.log(task)
     divTimeOpen.textContent = new Date(task.creationDate).toLocaleTimeString('ru', {hour: '2-digit', minute: '2-digit', second: '2-digit'})
-    
     
     const divTimeDone = document.createElement ('div')
     divTimeDone.classList.add('time-done')
@@ -121,11 +128,14 @@ export function drawTask (task) {
     divTrash.appendChild(itrash)
     trashButton.appendChild(divTrash)
     divTime.appendChild(divTimeOpen)
-    divTime.appendChild(divTimeDone)
-    newTask.appendChild(label)
-    newTask.appendChild(divText)
-    newTask.appendChild(divTime)
-    newTask.appendChild(trashButton)
+    divTime.appendChild(divTimeDone)    
+    divTimeAndTrash.appendChild(divTime)
+    divTimeAndTrash.appendChild(trashButton)
+    checkboxTextTask.appendChild(label)
+    checkboxTextTask.appendChild(divText)
+    newTask.appendChild(checkboxTextTask)
+    newTask.appendChild(divTimeAndTrash)
+
     
     if(task.completeDate){
     openTaskdoneSelection.appendChild(newTask)

@@ -15,6 +15,12 @@
     
     
   }
+  .checkboxTextTask {
+    display: flex;
+    align-items: center;
+    max-width: 670px;
+
+  }
   
   .task-o .checkbox {
     position: sticky;
@@ -23,21 +29,33 @@
   }
   
   
-  .task-o .task-to {
-    max-width: 75px;
-    right: 250px;
-    left: 250px;
+  .task-o .text-to {
+    margin-left: 10px ;
+    max-width: 1500px;
+    font-family: 'Roboto', sans-serif;
+    word-break: break-all;
+  }
+
+  .inputTextTask {
+    outline: none;
+    border: none;
+    width: 550px;
+    font-family: 'Roboto', sans-serif;
+    word-break: break-all;
+  }
+
+  .divTimeAndTrash {
     display: flex;
     align-items: center;
-    position: sticky;
-    
-    font-family: 'Roboto', sans-serif;
+
   }
   
   .task-o .time {
+    margin-left: 50px;
+    margin-right: 110px;
     position: sticky;
     font-family: 'Roboto', sans-serif;
-    font-size: 80%;
+    font-size: 100%;
   }
   
   .trash-but {
@@ -49,10 +67,6 @@
    
   }
 
-   
-    
-  
-  
   .task-o .trash-but .trash{
     padding:0 0 0 2px ;
     font-size: 150%;
@@ -69,8 +83,3 @@
 
   
 
-  /* .task-o .trash-but:hover .trash-but {
-      
-      display: block;
-  }
-   */
