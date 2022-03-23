@@ -5,18 +5,6 @@ import { addTaskToLocaleStorage, getTaskFromLocalstorage } from './function js/l
 import { findlasttaskid } from './function js/lastTask-id';
 import { drawTaskFromLocalStorage } from './function js/localeStorage/drawLocaleStorage';
 import { drawTask } from './function js/drawTask/drawTask';
-const { Client } = require('pg')
-
-
-
-
-// const client = new Client ({
-//   user: 'postgres',
-//     host: 'localhost',
-//     database: 'Todolist_Base',
-//     password: '1973',
-//     port: 5432
-// })
 
 
 
@@ -54,17 +42,17 @@ const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 
 const searchTask = document.querySelector('.search-wrapper .search')
 
-// searchTask.addEventListener("input", function(){
+searchTask.addEventListener("input", function(){
   
-//   let tasks = getTaskFromLocalstorage ()
-
-//   for (let i = 0; tasks.length > 0; i++) {
-  
-//     const textFilter = tasks.filter(task => task.title == searchTask.value)
-//     console.log(textFilter)
-    
-  // }
-// })
+  let tasks = getTaskFromLocalstorage ()
+    const textFilter = tasks.filter(task => task.title.toUpperCase().includes(searchTask.value.toUpperCase()))
+    console.log(textFilter)
+    openTaskopenSelection.innerHTML = ""
+    openTaskdoneSelection.innerHTML = ""
+    textFilter.forEach(task => {
+      drawTask(task);
+    })
+})
 
 
 
