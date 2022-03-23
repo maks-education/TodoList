@@ -12,6 +12,7 @@ function sortTaskBydate (tasksElements) {
         let date = Date.parse(dateElement.getAttribute('data-value'))
         let id = tasksElements[i].getAttribute('data-id')
         dates[id] = date
+        
       }
       tasksElements.sort((el1, el2) =>{
         return isAsc 
