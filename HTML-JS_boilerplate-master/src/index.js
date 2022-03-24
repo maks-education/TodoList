@@ -1,12 +1,15 @@
 import './style.css';
 import './function js/done-sort.js'
 import { drawEmptyDoneTaskSectionMessage, drawEmptyOpenTaskSectionMessage } from './function js/drawWelcomeMessage';
-import { addTaskToLocaleStorage, getTaskFromLocalstorage } from './function js/localeStorage/loacaleStorage';
+import { addTaskToDataBase, addTaskToLocaleStorage, getTaskFromLocalstorage } from './function js/localeStorage/loacaleStorage';
 import { findlasttaskid } from './function js/lastTask-id';
 import { drawTaskFromLocalStorage } from './function js/localeStorage/drawLocaleStorage';
 import { drawTask } from './function js/drawTask/drawTask';
 
-
+async function getResult () {
+  const result = await fetch('http://localhost:3000/tolo')
+}
+getResult()
 
 drawEmptyOpenTaskSectionMessage ()
 drawEmptyDoneTaskSectionMessage ()
@@ -19,7 +22,7 @@ let lastTaskid = findlasttaskid() +1;
 
 newTaskButton.onclick = function () {
 
-  addTaskToLocaleStorage ({
+  addTaskToDataBase ({
     id: lastTaskid,
     title: document.querySelector('.newTaskname').value,
     creationDate: new Date(),
@@ -46,7 +49,6 @@ searchTask.addEventListener("input", function(){
   
   let tasks = getTaskFromLocalstorage ()
     const textFilter = tasks.filter(task => task.title.toUpperCase().includes(searchTask.value.toUpperCase()))
-    console.log(textFilter)
     openTaskopenSelection.innerHTML = ""
     openTaskdoneSelection.innerHTML = ""
     textFilter.forEach(task => {
@@ -55,5 +57,7 @@ searchTask.addEventListener("input", function(){
 })
 
 
+
+fetch("http://localhost:3000/todo")
 
 

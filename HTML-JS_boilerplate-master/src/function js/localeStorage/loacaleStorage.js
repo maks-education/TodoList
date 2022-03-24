@@ -24,6 +24,7 @@ export function getTaskFromLocaleStorageDoneSection() {
 }
 
 export function addTaskToLocaleStorage(taskObject) {
+  console.log('hello')
     let tasks = getTaskFromLocalstorage ()
      let sameTaskIndex = tasks.findIndex(task => task.id === taskObject.id)
      
@@ -31,8 +32,20 @@ export function addTaskToLocaleStorage(taskObject) {
    tasks.splice(sameTaskIndex, 1, taskObject)
      } else{
      tasks.push(taskObject)
+     addTaskToDataBase(taskObject)
      }
-     localStorage.setItem('task', JSON.stringify(tasks))
+     
+}
+
+export function addTaskToDataBase (task) {
+    fetch('http://localhost:3000/task', {
+      method: 'POST',
+      body: JSON.stringify(task),
+      header: {
+        'Content-type':'application/json',
+      }
+    }) 
+  console.log('hello')  
 }
 
 export function removeTaskFromLocalStorage(taskObject) {

@@ -7,6 +7,7 @@ const openTaskopenSelection = document.querySelector('.task-open .tasks');
 const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 
 
+
 export function drawTask (task) {
     const newTask = document.createElement('div')
     newTask.classList.add('task-o')
