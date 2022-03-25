@@ -99,23 +99,32 @@ export function drawTask (task) {
   
     trashButton.onclick = function() {
       newTask.remove()
-      removeTaskFromLocalStorage(task)
+       let clo = fetch('http://localhost:3000/deleteTask', {
+        method: 'DELETE',
+        URL: 'http://localhost:3000/task?id=1'
+      }) 
+      console.log(clo)
+      
       drawEmptyOpenTaskSectionMessage ()
       drawEmptyDoneTaskSectionMessage()
     }
   
     const clearOpen = document.querySelector('.clear-open')
     clearOpen.ondblclick = function(){
+    fetch('http://localhost:3000/deleteAllOpenTask')
       openTaskopenSelection.innerHTML=''
       let tasks = getTaskFromLocaleStorageOpenSection()
     tasks.forEach(task => {
         removeTaskFromLocalStorage(task)
+        
   })
   drawEmptyOpenTaskSectionMessage ()
+  
     }
   
     const clearDone = document.querySelector('.clear-done')
     clearDone.ondblclick = function(){
+      fetch('http://localhost:3000/deleteAllDoneTask')
       openTaskdoneSelection.innerHTML= ''
       let tasks = getTaskFromLocaleStorageDoneSection()
       tasks.forEach(task => {

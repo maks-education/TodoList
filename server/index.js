@@ -5,6 +5,9 @@ const {Client} = require('pg')
 let cors = require('cors')
 const { createTable } = require('./Base/createTable')
 const bodyParser = require('body-parser')
+const { insertTable } = require('./Base/insertTask')
+const { deleteAllOpenTasks } = require('./Base/deleteAllOpenTasks')
+const { deleteAllDoneTasks } = require('./Base/deleteAllDoneTasks')
 
 
 
@@ -37,24 +40,20 @@ async function getTasks () {
   }
 }
 
-async function insertTable (body) {
-  console.log(body)
+
+client.connect().then(() =>{
+  createTable(client, () => {
+    
+  })
+})
+
+async function deleteTask (client) {
   try {
-  return client.query('INSERT INTO tasks (title, CreationDate, CompleteDate) VALUES ($1, $2, $3)', [body.title, body.CreationDate, body.CompleteDate])
+    return client.query('DELETE FROM tasks WHERE id is ($1)', [req.query.id])
   } catch (err) {
     console.log(err)
   }
 }
-
-
-client.connect().then(() =>{
-  createTable(client, () => {
-  })
-   
-  
-})
-
-    
   
 if (process.env.NODE_ENV === 'development'){
 app.use(cors())
@@ -72,13 +71,24 @@ app.get('/tolo', async (req, res) =>{
   res.send(result.rows)
 })
 app.post('/task', async (req,res) => {
-  console.log(req)
-    let result = await insertTable(req.body)
-    
-  console.log(result)
+    let result = await insertTable(client, req.body)
     res.send('complete')
 })
 
+app.get('/deleteAllOpenTask', async (req, res) => {
+  let result = await deleteAllOpenTasks(client)
+  res.send('complete')
+})
+
+app.get('/deleteAllDoneTask', async (req, res) => {
+  let result = await deleteAllDoneTasks(client)
+  res.send('complete')
+})
+
+app.delete('/deleteTask', async (req, res) => {
+  let result = await deleteTask(client)
+  res.send('complete')
+})
 
 app.use('/', express.static('dist'));
 

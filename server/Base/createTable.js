@@ -1,13 +1,11 @@
 
 
-function createTable(client) {
-    return client.query('CREATE TABLE IF NOT EXISTS tasks (id SERIAL, Title VARCHAR, CreationDate TIMESTAMP, CompleteDate TIMESTAMP)', (err, res) => {
-        if (err){
-            console.log(err)
-        } else if (res){
-            console.log('Tasks the table already exists or was created successfully')
-        }
-      })
+async function createTable(client) {
+    try{
+        return client.query('CREATE TABLE IF NOT EXISTS tasks (id SERIAL, Title VARCHAR, CreationDate TIMESTAMP, CompleteDate TIMESTAMP)')
+    } catch (err){
+        console.log(err)
     }
-    module.exports.createTable = createTable 
+}
+module.exports.createTable = createTable 
     

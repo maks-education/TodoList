@@ -41,7 +41,7 @@ export function addTaskToDataBase (task) {
     fetch('http://localhost:3000/task', {
       method: 'POST',
       body: JSON.stringify(task),
-      header: {
+      headers: {
         'Content-type':'application/json',
       }
     }) 

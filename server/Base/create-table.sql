@@ -1,8 +1,0 @@
-CREATE TABLE IF EXISTS `Tasks` (
-  `id` INTEGER  NOT NULL AUTO_INCREMENT,
-  `Title` TEXT  NOT NULL,
-  `Creation-Date` DATETIME  NOT NULL,
-  `Complition-Date` DATETIME  NOT NULL,
-  PRIMARY KEY (`id`)
-)
-
