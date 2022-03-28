@@ -1,6 +1,6 @@
 import { drawEmptyDoneTaskSectionMessage, drawEmptyOpenTaskSectionMessage } from "../drawWelcomeMessage";
 import { findlasttaskid } from "../lastTask-id";
-import { addTaskToLocaleStorage, getTaskFromLocaleStorageDoneSection, getTaskFromLocaleStorageOpenSection, removeTaskFromLocalStorage } from "../localeStorage/loacaleStorage";
+import { addTaskToLocaleStorage, editTask, getTaskFromLocaleStorageDoneSection, getTaskFromLocaleStorageOpenSection, removeTaskFromLocalStorage } from "../localeStorage/loacaleStorage";
 
 
 const openTaskopenSelection = document.querySelector('.task-open .tasks');
@@ -41,6 +41,8 @@ export function drawTask (task) {
   
       input.onblur = function() {
         divText.textContent = input.value
+        task.title = input.value
+        editTask(task)
       }
     }
     
@@ -78,7 +80,7 @@ export function drawTask (task) {
         divTimeDone.textContent = ''
         divTimeDone.removeAttribute('data-value')
       }
-      addTaskToLocaleStorage(task)
+      editTask(task)
       drawEmptyOpenTaskSectionMessage ()
       drawEmptyDoneTaskSectionMessage()
       
@@ -99,11 +101,10 @@ export function drawTask (task) {
   
     trashButton.onclick = function() {
       newTask.remove()
-       let clo = fetch('http://localhost:3000/deleteTask', {
+       fetch(`http://localhost:3000/deleteTask?id=${task.id}`, {
         method: 'DELETE',
-        URL: 'http://localhost:3000/task?id=1'
       }) 
-      console.log(clo)
+    
       
       drawEmptyOpenTaskSectionMessage ()
       drawEmptyDoneTaskSectionMessage()

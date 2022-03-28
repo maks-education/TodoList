@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const { insertTable } = require('./Base/insertTask')
 const { deleteAllOpenTasks } = require('./Base/deleteAllOpenTasks')
 const { deleteAllDoneTasks } = require('./Base/deleteAllDoneTasks')
+const { editTask } = require('./Base/editTask')
 
 
 
@@ -47,9 +48,9 @@ client.connect().then(() =>{
   })
 })
 
-async function deleteTask (client) {
+async function deleteTask (client, id) {
   try {
-    return client.query('DELETE FROM tasks WHERE id is ($1)', [req.query.id])
+    return client.query('DELETE FROM tasks WHERE id = ($1)', [id])
   } catch (err) {
     console.log(err)
   }
@@ -75,6 +76,11 @@ app.post('/task', async (req,res) => {
     res.send('complete')
 })
 
+app.put('/task', async (req,res) => {
+  let result = await editTask(client, req.body)
+  res.send('complete')
+})
+
 app.get('/deleteAllOpenTask', async (req, res) => {
   let result = await deleteAllOpenTasks(client)
   res.send('complete')
@@ -86,7 +92,7 @@ app.get('/deleteAllDoneTask', async (req, res) => {
 })
 
 app.delete('/deleteTask', async (req, res) => {
-  let result = await deleteTask(client)
+  let result = await deleteTask(client, req.query.id)
   res.send('complete')
 })
 
