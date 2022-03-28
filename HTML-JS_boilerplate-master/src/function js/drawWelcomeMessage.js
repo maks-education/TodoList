@@ -3,7 +3,7 @@ const WelcomeOpen = document.querySelector(".div-text-welcome-open")
 const WelcomeDone = document.querySelector(".div-text-welcome-done")
 
 export async function drawEmptyOpenTaskSectionMessage () {
-  const result = await fetch('http://localhost:8080/tolo')
+  const result = await fetch('/tolo')
   const resultjson = await result.json()
   const resultjsonFilter = resultjson.filter(task => task.completedate === null)
   console.log(resultjsonFilter)
@@ -16,7 +16,7 @@ export async function drawEmptyOpenTaskSectionMessage () {
   }
 
 export async function drawEmptyDoneTaskSectionMessage () {
-  const result = await fetch('http://localhost:8080/tolo')
+  const result = await fetch('/tolo')
   const resultjson = await result.json()
   const resultjsonFilter = resultjson.filter(task => task.completedate !== null)
   console.log(resultjsonFilter)

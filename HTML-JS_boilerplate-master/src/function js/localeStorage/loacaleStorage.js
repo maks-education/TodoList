@@ -28,7 +28,7 @@ export function addTaskToLocaleStorage(taskObject) {
      }
 
 export function editTask (task) {
-  fetch('http://localhost:8080/task', {
+  fetch('/task', {
     method: 'PUT',
     body: JSON.stringify(task),
     headers: {
@@ -39,7 +39,7 @@ console.log('hello')
 }
 
 export function addTaskToDataBase (task) {
-    fetch('http://localhost:8080/task', {
+    fetch('/task', {
       method: 'POST',
       body: JSON.stringify(task),
       headers: {
