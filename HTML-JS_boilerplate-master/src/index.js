@@ -9,7 +9,7 @@ import 'core-js/actual'
 
 
 async function getResult () {
-  const result = await fetch('http://localhost:3000/tolo')
+  const result = await fetch('http://localhost:8080/tolo')
   const resultjson = await result.json()
   resultjson.forEach(function (task) {
     drawTask({
@@ -69,7 +69,7 @@ const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 const searchTask = document.querySelector('.search-wrapper .search')
 
 searchTask.addEventListener("input", async function(){
-  const result = await fetch('http://localhost:3000/tolo')
+  const result = await fetch('http://localhost:8080/tolo')
   const resultjson = await result.json()
     const textFilter = resultjson.filter(task => task.title.toUpperCase().includes(searchTask.value.toUpperCase()))
     openTaskopenSelection.innerHTML = ""
@@ -86,6 +86,6 @@ searchTask.addEventListener("input", async function(){
 
 
 
-fetch("http://localhost:3000/todo")
+fetch("http://localhost:8080/todo")
 
 

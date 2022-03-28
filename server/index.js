@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 const {Client} = require('pg')
 let cors = require('cors')
 const { createTable } = require('./Base/createTable')

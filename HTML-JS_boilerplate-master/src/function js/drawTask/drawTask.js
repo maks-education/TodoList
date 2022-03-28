@@ -109,7 +109,7 @@ export function drawTask (task) {
   
     trashButton.onclick = function() {
       newTask.remove()
-       fetch(`http://localhost:3000/deleteTask?id=${task.id}`, {
+       fetch(`http://localhost:8080/deleteTask?id=${task.id}`, {
         method: 'DELETE',
       }) 
     
@@ -120,7 +120,7 @@ export function drawTask (task) {
   
     const clearOpen = document.querySelector('.clear-open')
     clearOpen.ondblclick = function(){
-    fetch('http://localhost:3000/deleteAllOpenTask')
+    fetch('http://localhost:8080/deleteAllOpenTask')
       openTaskopenSelection.innerHTML=''
       let tasks = getTaskFromLocaleStorageOpenSection()
     tasks.forEach(task => {
@@ -133,7 +133,7 @@ export function drawTask (task) {
   
     const clearDone = document.querySelector('.clear-done')
     clearDone.ondblclick = function(){
-      fetch('http://localhost:3000/deleteAllDoneTask')
+      fetch('http://localhost:8080/deleteAllDoneTask')
       openTaskdoneSelection.innerHTML= ''
       let tasks = getTaskFromLocaleStorageDoneSection()
       tasks.forEach(task => {
