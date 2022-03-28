@@ -28,30 +28,37 @@ drawEmptyOpenTaskSectionMessage ()
 drawEmptyDoneTaskSectionMessage ()
 
 const newTaskButton = document.querySelector('.ADD')
-
+const newTaskNameInput = document.querySelector('.newTaskname')
 
 
 findlasttaskid()
 let lastTaskid = findlasttaskid() +1; 
 
+newTaskNameInput.onkeydown = function(e) {
+  if(e.code == "Enter"){
+  newTaskButton.click()
+  }
+}
 
 newTaskButton.onclick = function () {
 
+
   addTaskToDataBase ({
     id: lastTaskid,
-    title: document.querySelector('.newTaskname').value,
+    title: newTaskNameInput.value,
     creationDate: new Date(),
     completeDate: null
   })
   
   drawTask ({
     id: lastTaskid,
-    title: document.querySelector('.newTaskname').value,
+    title: newTaskNameInput.value,
     creationDate: new Date(),
     completeDate: null
   })
   lastTaskid ++
   drawEmptyOpenTaskSectionMessage ()
+  newTaskNameInput.value = ""
 }
 
 getResult()

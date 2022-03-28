@@ -44,7 +44,15 @@ export function drawTask (task) {
         task.title = input.value
         editTask(task)
       }
+      input.onkeydown = function (e){
+        if (e.code == 'Enter') {
+          input.blur()
+        }
+      }
     }
+
+
+      
     
     const divTimeAndTrash = document.createElement('div')
     divTimeAndTrash.classList.add('divTimeAndTrash')
