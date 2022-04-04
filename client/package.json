@@ -10,9 +10,8 @@
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "pg": "^8.7.3",
-    "regenerator-runtime": "^0.13.9"
-  },
-  "devDependencies": {
+    "regenerator-runtime": "^0.13.9",
+    
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
@@ -38,6 +37,7 @@
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   },
+ 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
