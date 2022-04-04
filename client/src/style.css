@@ -28,6 +28,9 @@ body{
     max-width: 950px;
     padding: 0 30px;
   }
+  .Todo-List-header{
+    flex-direction: row;
+  }
 }
 
 @media screen and (min-width: 1920px) {

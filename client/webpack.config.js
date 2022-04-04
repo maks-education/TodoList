@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack')
 
 config = {
   entry: { main: './src/index.js' },
@@ -38,6 +39,10 @@ config = {
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
     }),
+
+    new webpack.DefinePlugin({
+      isProduction: process.env.NODE_ENV !== 'development',
+      }),
   ],
 
   devtool: 'source-map',

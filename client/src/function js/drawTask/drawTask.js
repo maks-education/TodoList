@@ -1,3 +1,4 @@
+import { request } from "../api";
 import { drawEmptyDoneTaskSectionMessage, drawEmptyOpenTaskSectionMessage } from "../drawWelcomeMessage";
 import { findlasttaskid } from "../lastTask-id";
 import { addTaskToLocaleStorage, editTask, getTaskFromLocaleStorageDoneSection, getTaskFromLocaleStorageOpenSection, removeTaskFromLocalStorage } from "../localeStorage/loacaleStorage";
@@ -109,7 +110,7 @@ export function drawTask (task) {
   
     trashButton.onclick = function() {
       newTask.remove()
-       fetch(`/deleteTask?id=${task.id}`, {
+       request(`deleteTask?id=${task.id}`, {
         method: 'DELETE',
       }) 
     
@@ -120,7 +121,7 @@ export function drawTask (task) {
   
     const clearOpen = document.querySelector('.clear-open')
     clearOpen.ondblclick = function(){
-    fetch('/deleteAllOpenTask')
+    request('deleteAllOpenTask')
       openTaskopenSelection.innerHTML=''
       let tasks = getTaskFromLocaleStorageOpenSection()
     tasks.forEach(task => {
@@ -133,7 +134,7 @@ export function drawTask (task) {
   
     const clearDone = document.querySelector('.clear-done')
     clearDone.ondblclick = function(){
-      fetch('/deleteAllDoneTask')
+      request('deleteAllDoneTask')
       openTaskdoneSelection.innerHTML= ''
       let tasks = getTaskFromLocaleStorageDoneSection()
       tasks.forEach(task => {

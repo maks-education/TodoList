@@ -6,10 +6,11 @@ import { findlasttaskid } from './function js/lastTask-id';
 import { drawTaskFromLocalStorage } from './function js/localeStorage/drawLocaleStorage';
 import { drawTask } from './function js/drawTask/drawTask';
 import 'core-js/actual'
+import { request } from './function js/api';
 
 
 async function getResult () {
-  const result = await fetch('/tolo')
+  const result = await request('tolo')
   const resultjson = await result.json()
   resultjson.forEach(function (task) {
     drawTask({
@@ -69,7 +70,7 @@ const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 const searchTask = document.querySelector('.search-wrapper .search')
 
 searchTask.addEventListener("input", async function(){
-  const result = await fetch('/tolo')
+  const result = await request('tolo')
   const resultjson = await result.json()
     const textFilter = resultjson.filter(task => task.title.toUpperCase().includes(searchTask.value.toUpperCase()))
     openTaskopenSelection.innerHTML = ""
@@ -86,6 +87,6 @@ searchTask.addEventListener("input", async function(){
 
 
 
-fetch("/todo")
+request("todo")
 
 

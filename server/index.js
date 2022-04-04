@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 8080
+const port = 3000
 const {Client} = require('pg')
 let cors = require('cors')
 const { createTable } = require('./Base/createTable')
@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'development'){
 app.use(cors())
 }
 
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
