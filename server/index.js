@@ -61,6 +61,8 @@ if (process.env.NODE_ENV === 'development'){
 app.use(cors())
 }
 
+console.log(process.env.PORT)
+
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
