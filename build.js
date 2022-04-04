@@ -1,5 +1,6 @@
 const { exec } = require('child_process');
 const fs  = require('fs')
+const path = require('path')
 
 let child1 = exec('cd ./client && npm i && npm run build' , () => {
     fs.renameSync(path.join(__dirname, './client/dist'), path.join(__dirname, './server/dist'));
