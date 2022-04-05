@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "start": "node build.js"
+      "start": "node build.js",
+      "dev": "node delete_disp.js && node build.js"
     },
     "author": "",
     "license": "ISC"
