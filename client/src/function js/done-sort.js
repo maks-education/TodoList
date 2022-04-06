@@ -1,4 +1,4 @@
-
+export function bindSorting () {
 const openTaskopenSelection = document.querySelector('.task-open .tasks');
 const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 
@@ -81,3 +81,4 @@ function sortTaskBydate (tasksElements) {
   
   })
   
+}

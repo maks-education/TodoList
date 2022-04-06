@@ -14,6 +14,14 @@ config = {
 
   module: {
     rules: [
+      {
+        test: /.vue$/,
+        use: {
+        loader: 'vue-loader',
+          },    
+      },
+
+
     
       {
         test: /\.css$/,
@@ -29,6 +37,13 @@ config = {
       },
     ],
   },
+
+resolve: {
+alias: {
+  'vue$': 'vue/dist/vue.esm.js',
+  App: path.resolve(__dirname, 'src/')
+  }
+},
 
   plugins: [
     new CleanWebpackPlugin(),
