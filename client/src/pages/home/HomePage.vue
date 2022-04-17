@@ -71,6 +71,7 @@ import { findlasttaskid } from 'App/function js/lastTask-id';
 import { drawTaskFromLocalStorage } from 'App/function js/localeStorage/drawLocaleStorage';
 import { drawTask } from 'App/function js/drawTask/drawTask';
 import { bindSorting } from 'App/function js/done-sort.js';
+import { request } from "App/function js/api.js"
 
 async function getResult () {
   const result = await request('tolo')

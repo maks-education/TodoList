@@ -4,12 +4,15 @@ import { findlasttaskid } from "../lastTask-id";
 import { addTaskToLocaleStorage, editTask, getTaskFromLocaleStorageDoneSection, getTaskFromLocaleStorageOpenSection, removeTaskFromLocalStorage } from "../localeStorage/loacaleStorage";
 
 
-const openTaskopenSelection = document.querySelector('.task-open .tasks');
-const openTaskdoneSelection = document.querySelector('.task-done .tasks');
+
 
 
 
 export function drawTask (task) {
+  
+  const openTaskopenSelection = document.querySelector('.task-open .tasks');
+  const openTaskdoneSelection = document.querySelector('.task-done .tasks');
+
     const newTask = document.createElement('div')
     newTask.classList.add('task-o')
     newTask.setAttribute('data-id', task.id)
