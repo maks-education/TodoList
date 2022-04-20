@@ -15,18 +15,18 @@ const { insertRegDataUser } = require('./Base/RegUserData/insertRegDataUser')
 
 
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'Todolist_Base',
-  password: '1973',
-  port: 5432,
+  // user: 'postgres',
+  // host: 'localhost',
+  // database: 'Todolist_Base',
+  // password: '1973',
+  // port: 5432,
   
-    // user: 'hvgskxjxgxtznw',
-    // host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
-    // database: 'd33emphb7i03s4',
-    // password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
-    // port: 5432,
-    // ssl: { rejectUnauthorized: false }
+    user: 'hvgskxjxgxtznw',
+    host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
+    database: 'd33emphb7i03s4',
+    password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
+    port: 5432,
+    ssl: { rejectUnauthorized: false }
   })
   
 
