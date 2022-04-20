@@ -15,6 +15,8 @@
     </header>
 
     <div class="form">
+    <router-link to ="/register">Sign Up</router-link>
+    <router-link to ="/login">Sign In</router-link>
         <div class="name-surname">
             <label>
                 <input class="name" type="text" placeholder="Name" v-model="form.name">
@@ -26,7 +28,7 @@
 
         <div class="login-email">
             <label>
-                <input class="login" type="text" placeholder="Login" v-model="form.login">
+                <input class="login" type="text" placeholder="Login" v-model="form.login" >
             </label>
             <label>
                 <input class="email" type="text" placeholder="Email" v-model="form.email">
@@ -35,11 +37,12 @@
         
         <div class="psw">
             <label>
-                <input class="password" type="password" placeholder="Password" v-model="form.password">
+                <input class="password" type="password" placeholder="Password" v-model="form.password" @input="validatePassword">
             </label>
             <label>
-                <input class="password" type="password" placeholder="Enter password">
+                <input class="password" type="password" placeholder="Enter password" v-model="confirmationPassword" @input="validatePassword">
             </label>
+            <div v-if="!isPasswordValid">ERROR</div>
         </div>
 
        <button class="saveDataUser" @click="handleFormSave">Save</button>
@@ -56,6 +59,8 @@ import {request} from "App/function js/api";
         name: 'RegisterPage',
         data(){
             return {
+            isPasswordValid: true,
+            confirmationPassword: null,
             form:{
             login: null,
             name: null,
@@ -66,15 +71,23 @@ import {request} from "App/function js/api";
             }
         },
         methods: {
-            handleFormSave() {
-                request('register', {
-                    method: 'POST',
-                    body: JSON.stringify(this.form),
-                    headers: {
-                        'Content-type':'application/json',
-                     }
-                }) 
-            } 
+                handleFormSave() {
+                    if (this.isPasswordValid && Boolean(this.form.password)) {
+                    request('register', {
+                        method: 'POST',
+                        body: JSON.stringify(this.form),
+                        headers: {
+                            'Content-type':'application/json',
+                        }
+                    }) 
+                }
+            },
+            validatePassword() {
+                this.isPasswordValid = true 
+                if (this.form.password !== this.confirmationPassword) {
+                    this.isPasswordValid = false
+                }
+            }
         }
     }
 
@@ -97,7 +110,10 @@ import {request} from "App/function js/api";
         margin-top: 100px;
         margin-left: auto;
         margin-right: auto;
-    border-radius: 10px ;      
+    border-radius: 10px ;
+    /* background: url(./background.jpg); */
+     
+    
     }
 
 .form input[type = text],[type = password]{

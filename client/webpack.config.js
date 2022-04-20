@@ -14,6 +14,7 @@ config = {
 
   module: {
     rules: [
+      
       {
         test: /.vue$/,
         use: {
@@ -40,6 +41,14 @@ config = {
           },
           'css-loader',
         ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+          esModule: false,
+        },
       },
     ],
   },
