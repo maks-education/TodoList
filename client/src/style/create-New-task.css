@@ -15,7 +15,7 @@
   .new-task .newTaskname {
     background-color: rgba(0, 0, 0, 0);
     border-width: 2px 2px 2px 2px;
-    border-color: rgb(255, 187, 0);
+    border-color: rgb(255, 123, 0);
     border-style: solid;
     width: calc(100% - 100px);
     padding: 3px 0 0 10px ;

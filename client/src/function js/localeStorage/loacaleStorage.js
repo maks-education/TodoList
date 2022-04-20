@@ -1,3 +1,4 @@
+import { request } from "../api"
 
 
 export function getTaskFromLocalstorage() {
@@ -39,14 +40,14 @@ console.log('hello')
 }
 
 export function addTaskToDataBase (task) {
-    fetch('/task', {
+    request('task', {
       method: 'POST',
       body: JSON.stringify(task),
       headers: {
         'Content-type':'application/json',
       }
     }) 
-  console.log('hello')  
+  console.log('complete')  
 }
 
 export function removeTaskFromLocalStorage(taskObject) {

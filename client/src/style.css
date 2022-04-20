@@ -28,9 +28,7 @@ body{
     max-width: 950px;
     padding: 0 30px;
   }
-  .Todo-List-header{
-    flex-direction: row;
-  }
+
 }
 
 @media screen and (min-width: 1920px) {
@@ -41,36 +39,24 @@ body{
   
 }
 
-@media screen and (min-width: 319px) {
-  .conteiner {
-    width: 315px
-  }
-  .Todo-List-header{
-    display: flex;
-    flex-direction: column;
-    
-    padding: 10px 40px;
-    color: white;
-  }
-    .logo {
-    max-width: 150px;
-    padding: 0 0px 0 20px;
-    font-weight: 800;
-     font-size: 30px;
-     font-family: 'Roboto', sans-serif;
-     margin-left: -30px;
-     background-color: rgb(201, 31, 31);
-}
-    .search {
-      width: 225px;
-    }
-    
-    .new-task {
-      padding: 18px 0 70px 0
-    }
+
+.home-reg {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+
 }
 
+#iconHome {
+  font-size: 230%;
+  color: rgb(31, 198, 25);
+}
 
+#iconUser {
+  font-size: 200%;
+  color: rgb(255, 132, 0)
+}
 
 
 @import url(./style/logo.css); /*стиль логотипа*/ 

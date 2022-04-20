@@ -8,24 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
   <body>
-    <header class="Todo-List-header">
-      <div class="logo">Todo List</div> 
-      <div class="search-wrapper">
-      <input type="text" placeholder="Search..." class="search">
-      <div class="search-icon-wrapper" > 
-      <i class="fa fa-search" aria-hidden="true"></i>
-      </div>
-    </div>
-    </header>
-<div class="container">
-<div id="app">
-  <router-link to ="/">Home</router-link>
-  <router-link to ="/register">register</router-link>
-  <router-view></router-view>
-</div>
-</div>
-
-
     
-  </body>
+<div id="app">
+    <router-view></router-view>
+</div>
+
+</body>
 </html>

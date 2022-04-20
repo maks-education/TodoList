@@ -1,5 +1,21 @@
 <template>
 <div>
+  <header class="Todo-List-header">
+      <div class="logo">Todo List</div> 
+        <div class="home-reg">
+          <router-link to ="/"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
+          <router-link to ="/register"><i class="fa fa-user-circle-o" aria-hidden="true" id="iconUser"></i></router-link>
+        </div>
+  <div class="search-wrapper">
+      <input type="text" placeholder="Search..." class="search">
+    <div class="search-icon-wrapper" > 
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+  </div>
+    </header>
+  
+  <div class="container">
+
       <section class="new-task">
     <input class="newTaskname" type="text" placeholder="New task..." >
     <button class="ADD">ADD</button>
@@ -57,6 +73,7 @@
   <section class="clear-done-list">
     <button class="clear-done">Clear "Done" list</button>
   </section>
+</div>
 </div>
   
 </template>

@@ -3,22 +3,30 @@ const app = express()
 const port = 3000
 const {Client} = require('pg')
 let cors = require('cors')
-const { createTable } = require('./Base/createTable')
 const bodyParser = require('body-parser')
-const { insertTable } = require('./Base/insertTask')
-const { deleteAllOpenTasks } = require('./Base/deleteAllOpenTasks')
-const { deleteAllDoneTasks } = require('./Base/deleteAllDoneTasks')
-const { editTask } = require('./Base/editTask')
+const { createTableTask } = require('./Base/Task/createTable')
+const { insertTable } = require('./Base/Task/insertTask')
+const { deleteAllOpenTasks } = require('./Base/Task/deleteAllOpenTasks')
+const { deleteAllDoneTasks } = require('./Base/Task/deleteAllDoneTasks')
+const { editTask } = require('./Base/Task/editTask')
+const { createTableRegUserData } = require('./Base/RegUserData/createTable')
+const { insertRegDataUser } = require('./Base/RegUserData/insertRegDataUser')
 
 
 
 const client = new Client({
-    user: 'hvgskxjxgxtznw',
-    host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
-    database: 'd33emphb7i03s4',
-    password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
-    port: 5432,
-    ssl: { rejectUnauthorized: false }
+  user: 'postgres',
+  host: 'localhost',
+  database: 'Todolist_Base',
+  password: '1973',
+  port: 5432,
+  
+    // user: 'hvgskxjxgxtznw',
+    // host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
+    // database: 'd33emphb7i03s4',
+    // password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
+    // port: 5432,
+    // ssl: { rejectUnauthorized: false }
   })
   
 
@@ -44,9 +52,8 @@ async function getTasks () {
 
 
 client.connect().then(() =>{
-  createTable(client, () => {
-    
-  })
+  createTableTask(client)
+  createTableRegUserData(client)
 })
 
 async function deleteTask (client, id) {
@@ -77,6 +84,12 @@ app.get('/tolo', async (req, res) =>{
 app.post('/task', async (req,res) => {
     let result = await insertTable(client, req.body)
     res.send('complete')
+})
+
+app.post('/register', async (req, res) => {
+    let result = await insertRegDataUser(client, req.body)
+    res.send('complete')
+    console.log(req.body)
 })
 
 app.put('/task', async (req,res) => {
