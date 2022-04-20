@@ -29,7 +29,7 @@ export function addTaskToLocaleStorage(taskObject) {
      }
 
 export function editTask (task) {
-  fetch('/task', {
+  request('task', {
     method: 'PUT',
     body: JSON.stringify(task),
     headers: {
