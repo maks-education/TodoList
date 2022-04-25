@@ -12,6 +12,12 @@ config = {
     filename: './src/bundle.js',
   },
 
+  devServer: { 
+    proxy: {
+    '/': 'http://localhost:3000/',
+  },
+},
+
   module: {
     rules: [
       
@@ -49,9 +55,18 @@ config = {
           outputPath: 'images',
           esModule: false,
         },
-      },
+      }, 
+      {
+    test: /\.(font-awesome.min.css)$/i,
+    loader: 'file-loader',
+    options: {
+      outputPath: 'fonts',
+      esModule: false,
+    },
+  },
     ],
   },
+ 
 
 resolve: {
 alias: {

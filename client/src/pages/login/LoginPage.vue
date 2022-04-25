@@ -56,6 +56,7 @@ export default {
             const resultCompare = await request('login', {
                 method: 'POST',
                 body: JSON.stringify(this.form),
+                credentials: 'include',
                 headers: {
                          'Content-type':'application/json',
                         }

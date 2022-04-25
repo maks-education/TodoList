@@ -14,7 +14,8 @@ const { insertRegDataUser } = require('./Base/RegUserData/insertRegDataUser')
 const { comparePsw } = require('./comparePsw')
 const { selectUserByLogin } = require('./Base/selectLoginPassword/selectLoginPsw')
 const e = require('express')
-
+const session = require('express-session')
+const { getTasks } = require('./Base/Task/getTasks')
 
 
 const client = new Client({
@@ -34,6 +35,11 @@ const client = new Client({
   
 
   app.use(bodyParser.json());
+
+app.use(session({
+  secret: 'my-secret',
+  cookie: { secret: true }
+}))
   
 function f() {
 return client.query('DROP TABLE IF EXISTS tasks', (err, res) => {
@@ -45,13 +51,7 @@ return client.query('DROP TABLE IF EXISTS tasks', (err, res) => {
 }) 
 }
 
-async function getTasks () {
-  try {
-    return client.query('SELECT * FROM tasks')
-  } catch (err) {
-    console.log(err)
-  }
-}
+
 
 
 client.connect().then(() =>{
@@ -81,11 +81,11 @@ app.get('/todo', (req, res) =>{
     res.send('Hello')
 })
 app.get('/tolo', async (req, res) =>{
-  let result = await getTasks()
+  let result = await getTasks(client, req.session.userLogin)
   res.send(result.rows)
 })
 app.post('/task', async (req,res) => {
-    let result = await insertTable(client, req.body)
+    let result = await insertTable(client, req.body, req.session.userLogin)
     res.send('complete')
 })
 
@@ -101,6 +101,7 @@ app.post('/login', async (req, res) => {
       let compare = comparePsw(req.body.password, result.rows[0].password)
 
     if (compare) {
+      req.session.userLogin = result.rows[0].login
       res.sendStatus(200)
     } else {
       res.sendStatus(400)
@@ -132,9 +133,7 @@ app.delete('/deleteTask', async (req, res) => {
 })
 
 
-app.use('/', (request, response) => {
-  response.redirect('/register')
-});
+app.use('/', express.static('dist'));
 
 
 console.log(process.env.NODE_ENV)
