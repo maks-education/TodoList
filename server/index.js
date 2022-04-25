@@ -13,6 +13,7 @@ const { createTableRegUserData } = require('./Base/RegUserData/createTable')
 const { insertRegDataUser } = require('./Base/RegUserData/insertRegDataUser')
 const { comparePsw } = require('./comparePsw')
 const { selectUserByLogin } = require('./Base/selectLoginPassword/selectLoginPsw')
+const e = require('express')
 
 
 
@@ -96,8 +97,18 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req, res) => {
     let result = await selectUserByLogin(client, req.body.login);
-    let compare = comparePsw(req.body.password, result.rows[0].password);
-    res.send(compare)
+    if (result.rows[0]){
+      let compare = comparePsw(req.body.password, result.rows[0].password)
+
+    if (compare) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(400)
+    }
+  } else {
+    res.sendStatus(400)
+  }
+    
 })
 
 app.put('/task', async (req,res) => {

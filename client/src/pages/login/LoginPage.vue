@@ -22,6 +22,7 @@
            <label>
                 <input class="password" type="password" placeholder="Password" v-model="form.password" >
             </label>
+            <div v-if="isError"> ERROR</div>
         </div>
         
 
@@ -42,24 +43,29 @@ export default {
     name: 'LoginPage',
     data(){ 
         return {
-            form:{
+        isError: false,
+        form:{
         login: null,
         password: null
         }
      }
  }, 
     methods: {
-        handleFormLogin() {
-            const resultCompare = request('login', {
+        async handleFormLogin() {
+            this.isError = false
+            const resultCompare = await request('login', {
                 method: 'POST',
                 body: JSON.stringify(this.form),
                 headers: {
                          'Content-type':'application/json',
                         }
                     }) 
-                
+                if (resultCompare.status === 200){
+                    this.$router.push({ path: '/home'})
+                }  else {
+                    this.isError = true
+                }
             },
-           
         }
 
 

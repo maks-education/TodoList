@@ -188,6 +188,7 @@ import {request} from "App/function js/api";
     letter-spacing: 3px;
     font-weight: bold;
     font-size: 1.5em;
+    outline: none;
     transition: all 650ms ease;
 }
 
