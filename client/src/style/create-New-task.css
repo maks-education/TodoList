@@ -37,6 +37,9 @@
     border-width: 2px;
     border-style: solid;
     border-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     width: 35px;
     height: 35px;
