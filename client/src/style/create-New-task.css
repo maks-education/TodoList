@@ -30,25 +30,27 @@
 
   
   .new-task .ADD{
-    border-width: 0 0 0 0;
-    border-radius: 10px;
-    background: rgb(255, 255, 255);
-    -webkit-box-shadow: 0px 0px 6px 2px rgb(155, 154, 154);
-   -moz-box-shadow: 0px 0px 6px 2px rgb(155, 154, 154);
-    box-shadow: 0px 0px 6px 2px rgb(155, 154, 154);
-    margin-left: 15px;
-    width: 70px;
-    height: 33px;
+    border-width: 0;
+    background: none;
+    margin-left: 10px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    width: 35px;
+    height: 35px;
     font-family: 'Roboto', sans-serif;
-    font-size: 85%;
+    font-size: 200% ;
     font-weight: normal;
+    text-align: center;
     transition: all 600ms ease;
   }
   
   .ADD:hover {
-      background: rgba(53, 15, 226, 0.973);
-      color: #ffffff;
-      -webkit-box-shadow: 0px 0px 16px 2px rgb(155, 154, 154);
--moz-box-shadow: 0px 0px 16px 2px rgb(155, 154, 154);
-box-shadow: 0px 0px 16px 2px blueviolet;
+      background: orangered;
+      border-color: white;
+      color: white;
+
   }
+

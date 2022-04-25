@@ -3,7 +3,7 @@
   <header class="Todo-List-header">
       <div class="logo">Todo List</div> 
         <div class="home-reg">
-          <router-link to ="/"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
+          <router-link to ="/home"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
           <router-link to ="/register"><i class="fa fa-user-circle-o" aria-hidden="true" id="iconUser"></i></router-link>
         </div>
   <div class="search-wrapper">
@@ -18,7 +18,7 @@
 
       <section class="new-task">
     <input class="newTaskname" type="text" placeholder="New task..." >
-    <button class="ADD">ADD</button>
+    <button class="ADD">+</button>
   
   </section>
 

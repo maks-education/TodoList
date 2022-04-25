@@ -120,7 +120,10 @@ app.delete('/deleteTask', async (req, res) => {
   res.send('complete')
 })
 
-app.use('/', express.static('dist'));
+
+app.use('/', (request, response) => {
+  response.redirect('/register')
+});
 
 
 console.log(process.env.NODE_ENV)

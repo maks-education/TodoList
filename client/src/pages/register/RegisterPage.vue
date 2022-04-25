@@ -3,7 +3,7 @@
       <header class="Todo-List-header">
       <div class="logo">Todo List</div> 
         <div class="home-reg">
-          <router-link to ="/"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
+          <router-link to ="/home"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
           <router-link to ="/register"><i class="fa fa-user-circle-o" aria-hidden="true" id="iconUser"></i></router-link>
         </div>
   <div class="search-wrapper">
@@ -15,8 +15,11 @@
     </header>
 
     <div class="form">
-    <router-link to ="/register">Sign Up</router-link>
-    <router-link to ="/login">Sign In</router-link>
+    
+        <div class="register-login">
+            <router-link to ="/register"><button class="button-form-register">Sign Up</button></router-link>
+            <router-link to ="/login"><button class="button-form-login">Sign In</button></router-link>
+        </div>
         <div class="name-surname">
             <label>
                 <input class="name" type="text" placeholder="Name" v-model="form.name">
@@ -45,7 +48,7 @@
             <div v-if="!isPasswordValid">ERROR</div>
         </div>
 
-       <button class="saveDataUser" @click="handleFormSave">Save</button>
+       <button class="saveDataUser" @click="handleFormSave">Register</button>
 
     
     </div>
@@ -96,11 +99,10 @@ import {request} from "App/function js/api";
 
 <style scoped>
     .form{
-    height: 500px;
+    height: 400px;
     width: 500px;
     background: white;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
         top: 0;
@@ -111,10 +113,58 @@ import {request} from "App/function js/api";
         margin-left: auto;
         margin-right: auto;
     border-radius: 10px ;
-    /* background: url(./background.jpg); */
-     
-    
     }
+
+.register-login {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 500px;
+    height: 60px;
+}
+
+    .button-form-register {
+    width: 105px;
+    height: 35px;
+    margin-right: 10px;
+    background-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-color: orangered;
+    border-radius: 15px;
+    font-size: 90%;
+    font-weight: 700;
+    color: orangered;
+    transition: all 600ms ease;
+}
+
+.button-form-register:hover {
+    background-color: orangered;
+    color: white;
+}
+
+.button-form-login {
+    width: 105px;
+    height: 35px;
+    margin-left: 10px;
+    background-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(0, 169, 0);
+    border-radius: 15px;
+    font-size: 92%;
+    font-weight: 700;
+    color: rgb(0, 169, 0);
+    transition: all 600ms ease;
+}
+
+.button-form-login:hover {
+    background-color: rgb(0, 169, 0);
+    color: white;
+}
+
 
 .form input[type = text],[type = password]{
     margin: 10px;
@@ -126,16 +176,24 @@ import {request} from "App/function js/api";
 }
 
 .saveDataUser {
+    height: 40px;
+    width: 200px;
     background: white;
-    height: 30px;
-    width: 70px;
-    border: 0;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
     margin-top: 55px;
-    margin-left: 350px;
+    border-width: 2px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: purple;
+    color: purple;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 1.5em;
+    transition: all 650ms ease;
+}
+
+.saveDataUser:hover {
+    background-color: purple;
+    color: white;
 }
 
 .home-reg {

@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     routes: [
-      {path: '/', component: HomePage},
+      {path: '/home', component: HomePage},
       {path: '/register', component: RegisterPage},
       {path: '/login', component: LoginPage}
     ],
