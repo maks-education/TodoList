@@ -15,17 +15,18 @@
   .new-task .newTaskname {
     background-color: rgba(0, 0, 0, 0);
     border-width: 2px 2px 2px 2px;
-    border-color: rgb(255, 123, 0);
+    border-color: white;
     border-style: solid;
     width: calc(100% - 100px);
     padding: 3px 0 0 10px ;
     border-radius: 10px;
     outline: none;
     font-size: 20px;
+    color: white;
   }
 
   .new-task .newTaskname::placeholder {
-    color: aqua;
+    color: orange;
   }
 
   
@@ -45,6 +46,7 @@
     height: 35px;
     font-family: 'Roboto', sans-serif;
     font-size: 200% ;
+    outline: none;
     font-weight: normal;
     text-align: center;
     transition: all 600ms ease;

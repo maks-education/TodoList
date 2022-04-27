@@ -122,11 +122,12 @@ let lastTaskid = findlasttaskid() +1;
 newTaskNameInput.onkeydown = function(e) {
   if(e.code == "Enter"){
   newTaskButton.click()
+  drawEmptyOpenTaskSectionMessage ()
   }
 }
 
 newTaskButton.onclick = function () {
-
+drawEmptyOpenTaskSectionMessage ()
 
   addTaskToDataBase ({
     id: lastTaskid,
@@ -168,7 +169,6 @@ searchTask.addEventListener("input", async function(){
       });
     })
 })
-
 
 
 request("todo")
