@@ -16,6 +16,8 @@ const { selectUserByLogin } = require('./Base/selectLoginPassword/selectLoginPsw
 const e = require('express')
 const session = require('express-session')
 const { getTasks } = require('./Base/Task/getTasks')
+const { getLoginUserFromBase } = require('./Base/getLoginUserFromBase')
+const { checkValidRegisterPassword } = require('./checkValidRegisterPassword')
 
 
 const client = new Client({
@@ -36,9 +38,15 @@ const client = new Client({
 
   app.use(bodyParser.json());
 
+// TODO make secure true for https
 app.use(session({
   secret: 'my-secret',
-  cookie: { secret: true }
+  rolling: true,
+  cookie: { 
+    secure: false, 
+    maxAge: 1000 * 10 * 60 * 60,
+  }
+
 }))
   
 function f() {
@@ -77,6 +85,25 @@ app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
+app.get('/isLoggedIn', (req, res) => {
+  if (req.session.userLogin) {
+    res.sendStatus(200)
+  } else {
+    res.sendStatus(400)
+  }
+})
+
+app.use(function (req, res , next) {
+  const requestForNotLoggedIn = ['/register', '/login', '/isLoggedIn']
+  if (req.session.userLogin) {
+    next()
+  } else if (requestForNotLoggedIn.includes(req.url)) {
+    next()
+  }else {
+    res.sendStatus(403)
+  }
+})
+
 app.get('/todo', (req, res) =>{
     res.send('Hello')
 })
@@ -91,8 +118,14 @@ app.post('/task', async (req,res) => {
 
 app.post('/register', async (req, res) => {
     let result = await insertRegDataUser(client, req.body)
-    res.send('complete')
-    console.log(req.body)
+    let byLogin = await getLoginUserFromBase(client)
+    let checkValidPsw = checkValidRegisterPassword(req.body.password)
+  console.log(checkValidPsw)
+    if (byLogin.rows[0].login !== req.body.login){
+      res.sendStatus(200)
+  }  else {
+      res.sendStatus(403)
+  }
 })
 
 app.post('/login', async (req, res) => {
@@ -132,6 +165,10 @@ app.delete('/deleteTask', async (req, res) => {
   res.send('complete')
 })
 
+app.delete('/clearCookie', async (req, res) => {
+  Cookies.remove('http://localhost:8080')
+  res.sendStatus(200)
+})
 
 app.use('/', express.static('dist'));
 

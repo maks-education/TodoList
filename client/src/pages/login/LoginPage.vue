@@ -22,7 +22,7 @@
            <label>
                 <input class="password" type="password" placeholder="Password" v-model="form.password" >
             </label>
-            <div v-if="isError"> ERROR</div>
+            <div v-if="isError" class="signInError">Неверный логин или пароль*</div>
         </div>
         
 
@@ -62,6 +62,7 @@ export default {
                         }
                     }) 
                 if (resultCompare.status === 200){
+                    this.$root.isLoggedIn = true
                     this.$router.push({ path: '/home'})
                 }  else {
                     this.isError = true
@@ -92,9 +93,13 @@ export default {
         margin-left: auto;
         margin-right: auto;
     border-radius: 10px ;
-  
-    
     }
+
+.signInError {
+    color: red;
+    font-size: 80%;
+    position: absolute;
+}
 
 .register-login {
     display: flex;

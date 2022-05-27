@@ -3,6 +3,7 @@
 .Todo-List-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /* background-color: rgb(4, 0, 250); */
     padding: 10px 40px;
     color: white;
@@ -18,33 +19,39 @@
      background-color: rgb(224, 71, 15);
      
   }
-  
+
+    .search-wrapper{
+    height: 25px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    margin-right: 27px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 10px;
+  }
+
+
   .search{
     background: none;
-    border-color: white;
-    border-width: 0 0 1px 0;
-    border-style: solid;
+    border: none;
     outline: none;
     width: 150px;
-    margin-top: 25px;
     color: white;
+    
   }
   
-  .search-wrapper{
-    display: flex;
-    margin-right: 30px;
-  }
+
   
   .search-icon-wrapper{
-    border-bottom: 1px solid white;
+    padding-right: 2px ;
     display: flex;
-    margin-top: 24px;
     transition:  450ms ;
-    
   }
   
   .search::placeholder {
     color: white;
-    font-size: 16px;
+    font-size: 100%;
     font-style: oblique;
   }

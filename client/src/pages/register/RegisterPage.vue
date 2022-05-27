@@ -2,10 +2,7 @@
 <div>
       <header class="Todo-List-header">
       <div class="logo">Todo List</div> 
-        <div class="home-reg">
-          <router-link to ="/home"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
-          <router-link to ="/register"><i class="fa fa-user-circle-o" aria-hidden="true" id="iconUser"></i></router-link>
-        </div>
+      
   <div class="search-wrapper">
       <input type="text" placeholder="Search..." class="search">
     <div class="search-icon-wrapper" > 
@@ -30,7 +27,9 @@
         </div>
 
         <div class="login-email">
+           
             <label>
+                
                 <input class="login" type="text" placeholder="Login" v-model="form.login" >
             </label>
             <label>
@@ -44,8 +43,9 @@
             </label>
             <label>
                 <input class="password" type="password" placeholder="Enter password" v-model="confirmationPassword" @input="validatePassword">
-            </label>
-            <div v-if="!isPasswordValid">ERROR</div>
+            </label> 
+            <div v-if="!Unique" class="error-login">Логин уже занят*</div>
+            <div v-if="!isPasswordValid" class="uncomparePsw">Пароли не совпадают*</div>
         </div>
 
        <button class="saveDataUser" @click="handleFormSave">Register</button>
@@ -62,6 +62,7 @@ import {request} from "App/function js/api";
         name: 'RegisterPage',
         data(){
             return {
+            Unique: true,
             isPasswordValid: true,
             confirmationPassword: null,
             form:{
@@ -74,23 +75,35 @@ import {request} from "App/function js/api";
             }
         },
         methods: {
-                handleFormSave() {
+                async handleFormSave() {
                     if (this.isPasswordValid && Boolean(this.form.password)) {
-                    request('register', {
+                    const isRegisterUp = await request('register', {
                         method: 'POST',
                         body: JSON.stringify(this.form),
                         headers: {
                             'Content-type':'application/json',
                         }
-                    }) 
+                    })
+                    if (isRegisterUp.status === 200) {
+                        this.$router.push({name: 'login'})
+                    } else if (isRegisterUp.status === 403) {
+                        this.Unique = false 
+                        } else {
+                        console.error('Error register')
+                    }
                 }
-            },
+            }, 
+          
+            
             validatePassword() {
                 this.isPasswordValid = true 
                 if (this.form.password !== this.confirmationPassword) {
                     this.isPasswordValid = false
                 }
-            }
+                
+            },
+
+
         }
     }
 
@@ -114,6 +127,18 @@ import {request} from "App/function js/api";
         margin-right: auto;
     border-radius: 10px ;
     }
+
+.error-login {
+    position: absolute;
+    color: red;
+    font-size: 80%;
+}
+
+.uncomparePsw {
+    position: absolute;
+    color: red;
+    font-size: 80%;
+}
 
 .register-login {
     display: flex;
@@ -179,7 +204,7 @@ import {request} from "App/function js/api";
     height: 40px;
     width: 200px;
     background: white;
-    margin-top: 55px;
+    margin-top: 50px;
     border-width: 2px;
     border-radius: 15px;
     border-style: solid;

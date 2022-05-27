@@ -1,11 +1,10 @@
 <template>
 <div>
   <header class="Todo-List-header">
-      <div class="logo">Todo List</div> 
-        <div class="home-reg">
-          <router-link to ="/home"><i class="fa fa-home" aria-hidden="true" id="iconHome"></i></router-link>
-          <router-link to ="/register"><i class="fa fa-user-circle-o" aria-hidden="true" id="iconUser"></i></router-link>
-        </div>
+       <router-link to ="/home" class="logo">
+       Todo List
+       </router-link> 
+        <button class="clear-cookie" @click="clearCookie">x</button>
   <div class="search-wrapper">
       <input type="text" placeholder="Search..." class="search">
     <div class="search-icon-wrapper" > 
@@ -92,7 +91,8 @@ import { request } from "App/function js/api.js"
 
 async function getResult () {
   const result = await request('tolo')
-  const resultjson = await result.json()
+  if (result.status === 200) {
+    const resultjson = await result.json()
   resultjson.forEach(function (task) {
     drawTask({
       id: task.id,
@@ -101,6 +101,10 @@ async function getResult () {
       completeDate: task.completedate
     })
   })
+  } else {
+    console.log('Failed to get tasks')
+  }
+  
 }
 
 export default {
@@ -173,10 +177,21 @@ searchTask.addEventListener("input", async function(){
 
 request("todo")
 
+    },
+
+    methods: {
+         clearCookie() {
+         request('clearCookie', {
+            method: 'DELETE',
+                })
+            }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .logo {
+    color: white;
+    text-decoration: none;
+  }
 </style>
