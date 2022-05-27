@@ -29,7 +29,7 @@
         <div class="login-email">
            
             <label>
-                
+                <div v-if="!Unique" class="error-login">Логин уже занят*</div>
                 <input class="login" type="text" placeholder="Login" v-model="form.login" >
             </label>
             <label>
@@ -44,7 +44,7 @@
             <label>
                 <input class="password" type="password" placeholder="Enter password" v-model="confirmationPassword" @input="validatePassword">
             </label> 
-            <div v-if="!Unique" class="error-login">Логин уже занят*</div>
+            
             <div v-if="!isPasswordValid" class="uncomparePsw">Пароли не совпадают*</div>
         </div>
 
@@ -130,14 +130,16 @@ import {request} from "App/function js/api";
 
 .error-login {
     position: absolute;
+    margin-left: 10px;
     color: red;
-    font-size: 80%;
+    font-size: 70%;
 }
 
 .uncomparePsw {
     position: absolute;
+    margin-left: 10px;
     color: red;
-    font-size: 80%;
+    font-size: 70%;
 }
 
 .register-login {

@@ -5,3 +5,4 @@ async function getLoginUserFromBase (client) {
         console.error('error')
     }
 } module.exports.getLoginUserFromBase = getLoginUserFromBase
+
