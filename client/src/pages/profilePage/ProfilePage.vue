@@ -1,12 +1,24 @@
 <template>
 <div>
-    <header class="logo-profile">Profile</header>
+    <header class="logo-profile">
+        <div class="logoo">Profile</div>
+        <button class="additionally">
+            <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22.5" cy="22.5" r="22.5" fill="#FF9900"/>
+            <path d="M12.75 18.1473H32.25C32.6642 18.1473 33 17.8707 33 17.5295V15.9848C33 15.6436 32.6642 15.3669 32.25 15.3669H12.75C12.3358 15.3669 12 15.6436 12 15.9848V17.5295C12 17.8707 12.3358 18.1473 12.75 18.1473ZM12.75 24.3259H32.25C32.6642 24.3259 33 24.0493 33 23.7081V22.1634C33 21.8222 32.6642 21.5456 32.25 21.5456H12.75C12.3358 21.5456 12 21.8222 12 22.1634V23.7081C12 24.0493 12.3358 24.3259 12.75 24.3259ZM12.75 30.5046H32.25C32.6642 30.5046 33 30.2279 33 29.8867V28.342C33 28.0008 32.6642 27.7242 32.25 27.7242H12.75C12.3358 27.7242 12 28.0008 12 28.342V29.8867C12 30.2279 12.3358 30.5046 12.75 30.5046Z" fill="black"/>
+            </svg>
+        </button>
+    </header>
 
     <div class="container-profile">
         <!-- Блок с фотографией и логином пользователя -->
         <div class="img-login">
-            <div class="img"></div>
-            <div class="user-login"></div>    
+            <div class="img">
+                <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M35 0C15.6653 0 0 15.6653 0 35C0 54.3347 15.6653 70 35 70C54.3347 70 70 54.3347 70 35C70 15.6653 54.3347 0 35 0ZM35 13.5484C41.8589 13.5484 47.4194 19.1089 47.4194 25.9677C47.4194 32.8266 41.8589 38.3871 35 38.3871C28.1411 38.3871 22.5806 32.8266 22.5806 25.9677C22.5806 19.1089 28.1411 13.5484 35 13.5484ZM35 62.0968C26.7157 62.0968 19.2923 58.3427 14.3246 52.4718C16.9778 47.4758 22.1714 44.0323 28.2258 44.0323C28.5645 44.0323 28.9032 44.0887 29.2278 44.1875C31.0625 44.7802 32.9819 45.1613 35 45.1613C37.0181 45.1613 38.9516 44.7802 40.7722 44.1875C41.0968 44.0887 41.4355 44.0323 41.7742 44.0323C47.8286 44.0323 53.0222 47.4758 55.6754 52.4718C50.7077 58.3427 43.2843 62.0968 35 62.0968Z" fill="black"/>
+                </svg>
+            </div>
+            <div class="user-login">Login</div>    
         </div>
         <!-- Блок с данными пользователя -->
         <div class="userData">
@@ -81,11 +93,40 @@ export default {
 
 <style scoped>
     .logo-profile{
-        height: 95px;
-        width: max-content;
         display: flex;
+        height: 95px;
+        justify-content: space-between
     }
 
+    .logoo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 185px;
+        height: 45px;
+        margin-left: 60px;
+        margin-top: 25px;
+        border-width: 0;
+        border-style: solid;
+        border-radius: 15px;
+        background: orange;
+
+        font-family: 'Roboto', sans-serif;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 7px;
+    }
+
+    .additionally{
+        display: flex;
+        background: none;
+        border-width: 0;
+        outline: none;
+        margin-top: 25px;
+        margin-right: 40px;
+        
+        
+    }
     .container-profile{
         display: flex;
     }
@@ -99,6 +140,9 @@ export default {
     }
 
     .img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 120px;
         height: 120px;
         border-width: 0;
@@ -108,6 +152,8 @@ export default {
     }
 
     .user-login{
+        display: flex;
+        justify-content: center;
         width: 150px;
         height: 35px;
         margin-left: 48px;
@@ -115,6 +161,11 @@ export default {
         border-style: solid;
         border-radius: 5px;
         background: orange;
+
+        font-family: 'Roboto', sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 5px;
     }
 
     .userData{
@@ -125,6 +176,10 @@ export default {
         margin-left: 112px;
         margin-top: 123px;
         padding-left: 1px;
+    }
+
+    .title-block{
+        margin-left: 3px;
     }
 
     .content-block-left{
