@@ -2,8 +2,9 @@ import 'core-js/actual'
 import Vue from 'vue';
 import RegisterPage from "./pages/register/RegisterPage.vue"
 import HomePage from "./pages/home/HomePage.vue"
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'
 import LoginPage from "./pages/login/LoginPage.vue"
+import ProfilePage from "./pages/profilePage/ProfilePage.vue"
 import { request } from "App/function js/api.js"
 
 Vue.use(VueRouter)
@@ -13,7 +14,8 @@ const router = new VueRouter({
       {path: '/', redirect: '/login'},
       {path: '/home', component: HomePage, name: 'home'},
       {path: '/register', component: RegisterPage, name: 'register'},
-      {path: '/login', component: LoginPage, name: 'login'}
+      {path: '/login', component: LoginPage, name: 'login'},
+      {path: '/profile', component: ProfilePage, name: 'profile'},
     ],
 })
 
@@ -41,7 +43,7 @@ new Vue ({
     try {    
       if (isLoggedInResp.status === 200){
       this.$root.isLoggedIn = true
-      await this.$router.push({ path: '/home' })
+      await this.$router.push({ path: '/profile' }) //вернуть на home
     } else {
       this.$root.isLoggedIn = false
       await this.$router.push({ path: '/login' })
