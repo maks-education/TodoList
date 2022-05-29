@@ -21,18 +21,18 @@ const { checkValidRegisterPassword } = require('./checkValidRegisterPassword')
 
 
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'Todolist_Base',
-  password: '1973',
-  port: 5432,
+  // user: 'postgres',
+  // host: 'localhost',
+  // database: 'Todolist_Base',
+  // password: '1973',
+  // port: 5432,
   
-    // user: 'hvgskxjxgxtznw',
-    // host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
-    // database: 'd33emphb7i03s4',
-    // password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
-    // port: 5432,
-    // ssl: { rejectUnauthorized: false }
+    user: 'hvgskxjxgxtznw',
+    host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
+    database: 'd33emphb7i03s4',
+    password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
+    port: 5432,
+    ssl: { rejectUnauthorized: false }
   })
   
 
@@ -65,6 +65,9 @@ return client.query('DROP TABLE IF EXISTS tasks', (err, res) => {
 client.connect().then(() =>{
   createTableTask(client)
   createTableRegUserData(client)
+}).catch((err) => {
+  console.log('Database connection error')
+  console.log(err)
 })
 
 async function deleteTask (client, id) {
@@ -81,7 +84,7 @@ app.use(cors())
 
 console.log(process.env.PORT)
 
-app.listen(process.env.PORT || port, '0.0.0.0', () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
