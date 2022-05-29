@@ -2,7 +2,7 @@
 <div>
   <header class="Todo-List-header">
        <router-link to ="/home" class="logo">
-       Todo List
+       Todo List 
        </router-link> 
         <button class="clear-cookie" @click="clearCookie">x</button>
   <div class="search-wrapper">
