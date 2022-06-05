@@ -16,4 +16,8 @@ function build(callback) {
 build(function () {
     console.log('Build successful, application started')
 })
-
+let a = 0
+setInterval(() => {
+    a++
+    console.log(a)
+}, 1000)
