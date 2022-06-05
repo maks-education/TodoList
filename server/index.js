@@ -21,14 +21,19 @@ const { request } = require('express')
 require('dotenv').config()
 const port = process.env.APP_PORT
 
-console.log(process.env)
-const client = new Client(process.env.DATABASE_URL || {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PSW,
-  port: process.env.DB_PORT,
-})
+const client = new Client(
+    process.env.DATABASE_URL
+        ? {
+            connectionString: process.env.DATABASE_URL
+        }
+        : {
+            user: process.env.DB_USER,
+            host: process.env.DB_HOST,
+            database: process.env.DB_NAME,
+            password: process.env.DB_PSW,
+            port: process.env.DB_PORT
+        }
+);
   
 
   app.use(bodyParser.json());
@@ -77,7 +82,6 @@ if (process.env.NODE_ENV === 'development'){
 app.use(cors())
 }
 
-console.log(process.env.PORT)
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
