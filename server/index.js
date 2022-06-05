@@ -65,6 +65,7 @@ return client.query('DROP TABLE IF EXISTS tasks', (err, res) => {
 client.connect().then(() =>{
   createTableTask(client)
   createTableRegUserData(client)
+    console.log('Database connected')
 }).catch((err) => {
   console.log('Database connection error')
   console.log(err)
@@ -86,6 +87,8 @@ app.use(cors())
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+app.use('/', express.static('dist'));
 
 app.get('/isLoggedIn', (req, res) => {
   if (req.session.userLogin) {
@@ -176,9 +179,4 @@ app.delete('/logout', async (req, res) => {
   await req.session.destroy()
   res.sendStatus(200)
 })
-
-app.use('/', express.static('dist'));
-
-
-console.log(process.env.NODE_ENV)
 
