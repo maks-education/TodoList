@@ -18,6 +18,7 @@ const session = require('express-session')
 const { getTasks } = require('./Base/Task/getTasks')
 const { getLoginUserFromBase } = require('./Base/getLoginUserFromBase')
 const { checkValidRegisterPassword } = require('./checkValidRegisterPassword')
+const { request } = require('express')
 
 
 const client = new Client(process.env.DATABASE_URL || {
@@ -148,6 +149,11 @@ app.post('/login', async (req, res) => {
     
 })
 
+app.get('/profile', async (req, res) => {
+  let result = dataUser(client, req.session.userLogin)
+  res.send('complete')
+})
+
 app.put('/task', async (req,res) => {
   let result = await editTask(client, req.body)
   res.send('complete')
@@ -168,8 +174,8 @@ app.delete('/deleteTask', async (req, res) => {
   res.send('complete')
 })
 
-app.delete('/clearCookie', async (req, res) => {
-  Cookies.remove('http://localhost:8080')
+app.delete('/logout', async (req, res) => {
+  await req.session.destroy()
   res.sendStatus(200)
 })
 

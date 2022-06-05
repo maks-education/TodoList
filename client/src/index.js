@@ -12,10 +12,10 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     routes: [
       {path: '/', redirect: '/login'},
-      {path: '/home', component: HomePage, name: 'home'},
-      {path: '/register', component: RegisterPage, name: 'register'},
-      {path: '/login', component: LoginPage, name: 'login'},
-      {path: '/profile', component: ProfilePage, name: 'profile'},
+      {path: '/home', component: HomePage, name: 'home', meta: {isSearchVisible: true, logo: 'TodoList'}},
+      {path: '/register', component: RegisterPage, name: 'register', meta: {logo: 'Sign Up'}},
+      {path: '/login', component: LoginPage, name: 'login', meta: {logo: 'Sign In'}},
+      {path: '/profile', component: ProfilePage, name: 'profile', meta: {logo: 'Profile'}},
     ],
 })
 

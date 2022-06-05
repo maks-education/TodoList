@@ -77,6 +77,10 @@ import MainHeader from "App/components/header/MainHeader.vue";
 export default {
     name: 'ProfilePage',
     components: {MainHeader},
+
+    methods: {
+        
+    },
 }
 </script>
 
