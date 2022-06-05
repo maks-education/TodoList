@@ -24,7 +24,8 @@ const port = process.env.APP_PORT
 const client = new Client(
     process.env.DATABASE_URL
         ? {
-            connectionString: process.env.DATABASE_URL
+            connectionString: process.env.DATABASE_URL,
+            sslmode: process.env.NODE_ENV === "production" ? "require" : "disable"
         }
         : {
             user: process.env.DB_USER,
