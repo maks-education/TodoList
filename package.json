@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "start": "cd ./server && npm run prod",
+      "start": "node start.js",
       "build": "node build.js",
       "dev": "node delete_dist.js && node build.js"
     },
