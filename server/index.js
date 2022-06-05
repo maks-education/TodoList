@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.APP_PORT
 const {Client} = require('pg')
 let cors = require('cors')
 const bodyParser = require('body-parser')
@@ -19,29 +19,22 @@ const { getTasks } = require('./Base/Task/getTasks')
 const { getLoginUserFromBase } = require('./Base/getLoginUserFromBase')
 const { checkValidRegisterPassword } = require('./checkValidRegisterPassword')
 const { request } = require('express')
-
-
+require('dotenv').config()
+console.log(process.env)
 const client = new Client(process.env.DATABASE_URL || {
-  user: 'postgres',
-  host: 'localhost',
-  database: 'Todolist_Base',
-  password: '1973',
-  port: 5432,
-  
-    // user: 'hvgskxjxgxtznw',
-    // host: 'ec2-18-215-96-22.compute-1.amazonaws.com',
-    // database: 'd33emphb7i03s4',
-    // password: '77b1154aaa27b4140413d8600a40cb1d1734cad5cf2ee526fd887e44032fd1b4',
-    // port: 5432,
-    // ssl: { rejectUnauthorized: false }
-  })
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PSW,
+  port: process.env.DB_PORT,
+})
   
 
   app.use(bodyParser.json());
 
 // TODO make secure true for https
 app.use(session({
-  secret: 'my-secret',
+  secret: process.env.SESSION_CREATION_SECRET,
   rolling: true,
   cookie: { 
     secure: false, 
