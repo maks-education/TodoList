@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 
 function build(callback) {
-    let child = exec('cd ./client && npm i && npm run build && cd .. && node ./delete_dist.js && node ./copyDist.js && cd ./server && npm i' , (error) => {
+    let child = exec('cd ./client && npm i && npm run build && cd .. && node ./delete_dist.js && node ./copyDist.js && cd ./server && npm i && npm i cross-env -g' , (error) => {
         if (error) {
             console.error(error)
         }
