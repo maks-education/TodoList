@@ -25,7 +25,7 @@ const client = new Client(
     process.env.DATABASE_URL
         ? {
             connectionString: process.env.DATABASE_URL,
-            ssl: true
+            ssl: { rejectUnauthorized: false }
         }
         : {
             user: process.env.DB_USER,
