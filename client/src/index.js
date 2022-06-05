@@ -43,7 +43,7 @@ new Vue ({
     try {    
       if (isLoggedInResp.status === 200){
       this.$root.isLoggedIn = true
-      await this.$router.push({ path: '/profile' }) //вернуть на home
+      await this.$router.push({ path: '/home' }) //вернуть на home
     } else {
       this.$root.isLoggedIn = false
       await this.$router.push({ path: '/login' })

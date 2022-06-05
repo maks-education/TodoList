@@ -1,57 +1,73 @@
 
 
-.Todo-List-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* background-color: rgb(4, 0, 250); */
-    padding: 10px 40px;
-    color: white;
-  }
+.logo-header{
+  display: flex;
+  height: 95px;
+  justify-content: space-between
+}
   
-  .logo {
-    padding: 5px 30px 5px 30px;
-    font-weight: 800;
-     font-size: 30px;
-     font-family: 'Roboto', sans-serif;
-     margin-left: 30px;
-     border-radius: 15px;
-     background-color: rgb(224, 71, 15);
-     
-  }
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+  height: 45px;
+  margin-left: 60px;
+  margin-top: 20px;
+  border-width: 0;
+  border-style: solid;
+  border-radius: 15px;
+  background:rgb(255, 153, 0);
 
-    .search-wrapper{
-    height: 25px;
-    align-content: center;
-    display: flex;
-    align-items: center;
-    margin-right: 27px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: white;
-    border-radius: 10px;
-  }
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 7px;
+}
 
+.logo-transition{
+  display: flex;
+  height: 95px;
+}
+.button-transition{
+margin-right: 15px;
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+}
+.transitionbutton{
+display: flex;
+height: 45px;
+margin-left: 5px;
+margin-top: 22px;
+}
+.transition-profile-home{
+display: flex;
 
-  .search{
-    background: none;
-    border: none;
-    outline: none;
-    width: 150px;
-    color: white;
+}
+
+.profile-transition{
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+margin-right: 10px;
+}
+
+.home-transition{
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+}
+
+.additionally{
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+margin-top: 20px;
+margin-right: 40px;
+}
     
-  }
-  
-
-  
-  .search-icon-wrapper{
-    padding-right: 2px ;
-    display: flex;
-    transition:  450ms ;
-  }
-  
-  .search::placeholder {
-    color: white;
-    font-size: 100%;
-    font-style: oblique;
-  }

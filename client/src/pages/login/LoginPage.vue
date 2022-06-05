@@ -1,15 +1,12 @@
 <template>
   <div>
 
-      <header class="Todo-List-header">
-      <div class="logo">Todo List</div> 
-  <div class="search-wrapper">
-      <input type="text" placeholder="Search..." class="search">
-    <div class="search-icon-wrapper" > 
-      <i class="fa fa-search" aria-hidden="true"></i>
-    </div>
-  </div>
-</header>
+<header class="logo-header">
+        
+        <div class="logo-transition">
+            <div class="logo">Sign In</div>
+        </div>
+    </header>
   <div class="form"> 
       <div class="register-login">
       <router-link to ="/register"><button class="button-form-register">Sign Up</button></router-link>

@@ -1,14 +1,10 @@
 <template> 
 <div>
-      <header class="Todo-List-header">
-      <div class="logo">Todo List</div> 
-      
-  <div class="search-wrapper">
-      <input type="text" placeholder="Search..." class="search">
-    <div class="search-icon-wrapper" > 
-      <i class="fa fa-search" aria-hidden="true"></i>
-    </div>
-  </div>
+ <header class="logo-header">
+        
+        <div class="logo-transition">
+            <div class="logo">Sign Up</div>
+        </div>
     </header>
 
     <div class="form">
