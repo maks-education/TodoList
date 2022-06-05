@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const port = process.env.APP_PORT
 const {Client} = require('pg')
 let cors = require('cors')
 const bodyParser = require('body-parser')
@@ -20,6 +19,8 @@ const { getLoginUserFromBase } = require('./Base/getLoginUserFromBase')
 const { checkValidRegisterPassword } = require('./checkValidRegisterPassword')
 const { request } = require('express')
 require('dotenv').config()
+const port = process.env.APP_PORT
+
 console.log(process.env)
 const client = new Client(process.env.DATABASE_URL || {
   user: process.env.DB_USER,
