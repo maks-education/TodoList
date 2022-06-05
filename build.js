@@ -17,7 +17,11 @@ build(function () {
     console.log('Build successful, application started')
 })
 let a = 0
-setInterval(() => {
-    a++
-    console.log(a)
+let int = setInterval(() => {
+    if (a < 100) {
+        a++
+        console.log(a)
+    } else {
+        clearInterval(int)
+    }
 }, 1000)
