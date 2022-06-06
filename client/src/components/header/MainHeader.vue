@@ -51,14 +51,12 @@
             </div>
 
 
-            <button class="additionally" @click="AdditionallyClick=!AdditionallyClick">
+            <button class="additionally" @click="toggleAditional" @blur="toggleAditional">
                 <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="22.5" cy="22.5" r="22.5" fill="#FF9900"/>
                     <path d="M12.75 18.1473H32.25C32.6642 18.1473 33 17.8707 33 17.5295V15.9848C33 15.6436 32.6642 15.3669 32.25 15.3669H12.75C12.3358 15.3669 12 15.6436 12 15.9848V17.5295C12 17.8707 12.3358 18.1473 12.75 18.1473ZM12.75 24.3259H32.25C32.6642 24.3259 33 24.0493 33 23.7081V22.1634C33 21.8222 32.6642 21.5456 32.25 21.5456H12.75C12.3358 21.5456 12 21.8222 12 22.1634V23.7081C12 24.0493 12.3358 24.3259 12.75 24.3259ZM12.75 30.5046H32.25C32.6642 30.5046 33 30.2279 33 29.8867V28.342C33 28.0008 32.6642 27.7242 32.25 27.7242H12.75C12.3358 27.7242 12 28.0008 12 28.342V29.8867C12 30.2279 12.3358 30.5046 12.75 30.5046Z" fill="black"/>
                 </svg>
-            </button>
-
-            <div class="menu-additionaly" v-show="AdditionallyClick">
+                <div class="menu-additionaly" v-show="AdditionallyClick">
                 <div @click="logout">
                     <svg width="150" height="30" viewBox="0 0 150 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="150" height="30" rx="5" fill="#292929"/>
@@ -68,6 +66,10 @@
                     </svg>
                 </div>
             </div>
+            </button>
+
+            
+            
 
         </div>
     </header>
@@ -98,6 +100,10 @@ export default {
         logout() {
             request('logout', { method: 'DELETE'})
             location.reload()
+        },
+
+        toggleAditional(){
+            this.AdditionallyClick=!this.AdditionallyClick
         }
     }
 }

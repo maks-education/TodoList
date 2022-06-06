@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+
 const {Client} = require('pg')
 let cors = require('cors')
 const bodyParser = require('body-parser')
@@ -18,6 +19,8 @@ const { getTasks } = require('./Base/Task/getTasks')
 const { getLoginUserFromBase } = require('./Base/getLoginUserFromBase')
 const { checkValidRegisterPassword } = require('./checkValidRegisterPassword')
 const { request } = require('express')
+const { dataUser } = require('./Base/dataUser')
+
 require('dotenv').config()
 const port = process.env.APP_PORT
 
@@ -37,7 +40,6 @@ const client = new Client(
             port: process.env.DB_PORT
         }
 );
-  
 
   app.use(bodyParser.json());
 
@@ -154,8 +156,12 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/profile', async (req, res) => {
-  let result = dataUser(client, req.session.userLogin)
-  res.send('complete')
+  if(req.session.userLogin !== null){
+    let result = await dataUser(client, req.session.userLogin)
+    res.send(result.rows[0])
+  } else {
+    res.status(400)
+  }
 })
 
 app.put('/task', async (req,res) => {

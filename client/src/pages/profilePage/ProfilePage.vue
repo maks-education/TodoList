@@ -10,7 +10,7 @@
                 <path d="M35 0C15.6653 0 0 15.6653 0 35C0 54.3347 15.6653 70 35 70C54.3347 70 70 54.3347 70 35C70 15.6653 54.3347 0 35 0ZM35 13.5484C41.8589 13.5484 47.4194 19.1089 47.4194 25.9677C47.4194 32.8266 41.8589 38.3871 35 38.3871C28.1411 38.3871 22.5806 32.8266 22.5806 25.9677C22.5806 19.1089 28.1411 13.5484 35 13.5484ZM35 62.0968C26.7157 62.0968 19.2923 58.3427 14.3246 52.4718C16.9778 47.4758 22.1714 44.0323 28.2258 44.0323C28.5645 44.0323 28.9032 44.0887 29.2278 44.1875C31.0625 44.7802 32.9819 45.1613 35 45.1613C37.0181 45.1613 38.9516 44.7802 40.7722 44.1875C41.0968 44.0887 41.4355 44.0323 41.7742 44.0323C47.8286 44.0323 53.0222 47.4758 55.6754 52.4718C50.7077 58.3427 43.2843 62.0968 35 62.0968Z" fill="black"/>
                 </svg>
             </div>
-            <div class="user-login">Login</div>    
+            <div class="user-login">{{userData.login}}</div>    
         </div>
         <!-- Блок с данными пользователя -->
         <div class="userData">
@@ -18,8 +18,9 @@
             <div class="content-block-left">
                 <div class="title-block">Name</div>
                 <div class="content-block-content-edit">
-                    <div class="field-block"></div>
-                    <button class="content-edit">
+                        <div v-if="!isEditLogin" class="field-block">{{userData.name}}</div>
+                        <input v-else class="field-block">
+                    <button class="content-edit" @click="toggleLoginEdit">
                         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="17.5" cy="17.5" r="17.5" fill="#FECF56"/>
                         <path d="M15.7503 17.4998C18.5122 17.4998 20.7505 15.1496 20.7505 12.2499C20.7505 9.35014 18.5122 7 15.7503 7C12.9885 7 10.7501 9.35014 10.7501 12.2499C10.7501 15.1496 12.9885 17.4998 15.7503 17.4998ZM19.2505 18.8122H18.5981C17.7309 19.2306 16.766 19.4685 15.7503 19.4685C14.7347 19.4685 13.7737 19.2306 12.9026 18.8122H12.2502C9.35165 18.8122 7 21.2813 7 24.3246V26.0308C7 27.1177 7.83988 27.9995 8.87507 27.9995H19.6138C19.52 27.7206 19.481 27.4253 19.5122 27.1259L19.7778 24.6281L19.8247 24.1728L20.1333 23.8488L23.153 20.6784C22.1959 19.5423 20.8091 18.8122 19.2505 18.8122V18.8122ZM21.0201 24.7716L20.7544 27.2735C20.7115 27.6919 21.0474 28.0446 21.442 27.9954L23.821 27.7165L29.2079 22.0606L26.407 19.1198L21.0201 24.7716V24.7716ZM31.7275 18.0288L30.247 16.4744C29.8837 16.0929 29.2899 16.0929 28.9266 16.4744L27.45 18.0247L27.2899 18.1929L30.0947 21.1336L31.7275 19.4192C32.0908 19.0337 32.0908 18.4144 31.7275 18.0288V18.0288Z" fill="black"/>
@@ -32,7 +33,7 @@
             <div class="content-block-right">
                 <div class="title-block">Surname</div>
                 <div class="content-block-content-edit">
-                    <div class="field-block"></div>
+                    <div class="field-block">{{userData.surname}}</div>
                     <button class="content-edit">
                         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="17.5" cy="17.5" r="17.5" fill="#FECF56"/>
@@ -45,7 +46,7 @@
             <div class="content-block-left">
                 <div class="title-block">Email</div>
                 <div class="content-block-content-edit">
-                    <div class="field-block"></div>
+                    <div class="field-block">{{userData.email}}</div>
                     <button class="content-edit">
                         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="17.5" cy="17.5" r="17.5" fill="#FECF56"/>
@@ -74,12 +75,32 @@
 
 <script>
 import MainHeader from "App/components/header/MainHeader.vue";
+import { request } from '../../function js/api';
 export default {
     name: 'ProfilePage',
     components: {MainHeader},
-
+        data(){
+            return{
+                isEditLogin: false,
+                userData: {
+                    
+                }
+            }
+        },
+    async mounted(){
+        await this.getUserData()
+         await console.log(this.userData)
+        },
+    
     methods: {
-        
+        async getUserData(){
+             const response = await request('profile')
+             this.userData = await response.json()
+        },
+
+        toggleLoginEdit(){
+            this.isEditLogin=!this.isEditLogin
+        }
     },
 }
 </script>
@@ -157,6 +178,10 @@ export default {
     }
 
     .field-block{
+        display: flex;
+        align-items: center;
+        padding-left: 3px;
+        padding-right: 3px;
         width: 250px;
         height: 30px;
         margin-right: 14px;
