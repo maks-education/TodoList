@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 
 function build(callback) {
-    let child = exec('cd ./client && npm i && npm run build && cd .. && node ./copyDist.js && cd ./server && npm i' , (error) => {
+    let child = exec('cd ./server && npm run prod' , (error) => {
         if (error) {
             console.error(error)
         }
@@ -14,5 +14,5 @@ function build(callback) {
 
 
 build(function () {
-    console.log('Build successful')
+    console.log('Start successful')
 })
