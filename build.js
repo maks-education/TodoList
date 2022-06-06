@@ -14,5 +14,5 @@ function build(callback) {
 
 
 build(function () {
-    console.log('Start successful')
+    console.log('Build successful')
 })

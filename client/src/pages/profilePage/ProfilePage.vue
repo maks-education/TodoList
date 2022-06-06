@@ -18,12 +18,8 @@
             <div class="content-block-left">
                 <div class="title-block">Name</div>
                 <div class="content-block-content-edit">
-                    <div>
-                        <div v-if="!isEditLogin" class="field-block"></div>
-                        <input v-else type="text">
-                        
-                    </div>
-                    <button class="content-edit" @click="toggleLoginEdit">
+                    <div class="field-block"></div>
+                    <button class="content-edit">
                         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="17.5" cy="17.5" r="17.5" fill="#FECF56"/>
                         <path d="M15.7503 17.4998C18.5122 17.4998 20.7505 15.1496 20.7505 12.2499C20.7505 9.35014 18.5122 7 15.7503 7C12.9885 7 10.7501 9.35014 10.7501 12.2499C10.7501 15.1496 12.9885 17.4998 15.7503 17.4998ZM19.2505 18.8122H18.5981C17.7309 19.2306 16.766 19.4685 15.7503 19.4685C14.7347 19.4685 13.7737 19.2306 12.9026 18.8122H12.2502C9.35165 18.8122 7 21.2813 7 24.3246V26.0308C7 27.1177 7.83988 27.9995 8.87507 27.9995H19.6138C19.52 27.7206 19.481 27.4253 19.5122 27.1259L19.7778 24.6281L19.8247 24.1728L20.1333 23.8488L23.153 20.6784C22.1959 19.5423 20.8091 18.8122 19.2505 18.8122V18.8122ZM21.0201 24.7716L20.7544 27.2735C20.7115 27.6919 21.0474 28.0446 21.442 27.9954L23.821 27.7165L29.2079 22.0606L26.407 19.1198L21.0201 24.7716V24.7716ZM31.7275 18.0288L30.247 16.4744C29.8837 16.0929 29.2899 16.0929 28.9266 16.4744L27.45 18.0247L27.2899 18.1929L30.0947 21.1336L31.7275 19.4192C32.0908 19.0337 32.0908 18.4144 31.7275 18.0288V18.0288Z" fill="black"/>
@@ -81,15 +77,9 @@ import MainHeader from "App/components/header/MainHeader.vue";
 export default {
     name: 'ProfilePage',
     components: {MainHeader},
-    data() {
-        return {
-            isEditLogin: false,
-        }
-    },
+
     methods: {
-        toggleLoginEdit() {
-            this.isEditLogin = !this.isEditLogin
-        }
+        
     },
 }
 </script>
