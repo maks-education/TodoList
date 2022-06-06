@@ -25,7 +25,9 @@ const client = new Client(
     process.env.DATABASE_URL
         ? {
             connectionString: process.env.DATABASE_URL,
-            ssl: { rejectUnauthorized: false }
+            ssl: {
+                rejectUnauthorized: false
+            }
         }
         : {
             user: process.env.DB_USER,
@@ -86,7 +88,7 @@ app.use(cors())
 
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port ${process.env.PORT || port}`)
 })
 
 app.use('/', express.static('dist'));
