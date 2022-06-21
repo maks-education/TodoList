@@ -1,0 +1,66 @@
+
+
+.logo-header{
+  display: flex;
+  height: 95px;
+  justify-content: space-between
+}
+  
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+  height: 45px;
+  margin-left: 60px;
+  margin-top: 20px;
+  border-width: 0;
+  border-style: solid;
+  border-radius: 15px;
+  background:rgb(255, 153, 0);
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 7px;
+}
+
+.logo-transition{
+  display: flex;
+  height: 95px;
+}
+.button-transition{
+margin-right: 15px;
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+}
+.transitionbutton{
+display: flex;
+height: 45px;
+margin-left: 5px;
+margin-top: 22px;
+}
+.transition-profile-home{
+display: flex;
+
+}
+
+.profile-transition{
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+margin-right: 10px;
+}
+
+.home-transition{
+display: flex;
+background: none;
+border-width: 0;
+outline: none;
+}
+
+
+    
