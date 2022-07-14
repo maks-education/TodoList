@@ -5,7 +5,7 @@ import { request } from "./api"
 
 export async function drawEmptyOpenTaskSectionMessage () {
   const WelcomeOpen = document.querySelector(".div-text-welcome-open")
-  const result = await request('tolo')
+  const result = await request('gettingtasks')
   const resultjson = await result.json()
   const resultjsonFilter = resultjson.filter(task => task.completedate === null)
   console.log(resultjsonFilter)
@@ -19,7 +19,7 @@ export async function drawEmptyOpenTaskSectionMessage () {
 
 export async function drawEmptyDoneTaskSectionMessage () {
   const WelcomeDone = document.querySelector(".div-text-welcome-done")
-  const result = await request('tolo')
+  const result = await request('gettingtasks')
   const resultjson = await result.json()
   const resultjsonFilter = resultjson.filter(task => task.completedate !== null)
   console.log(resultjsonFilter)
