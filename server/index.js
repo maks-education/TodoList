@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const session = require('express-session')
 
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
@@ -14,20 +13,10 @@ const { port, listeningPort } = require('./group/Settings of Server/port')
 const { dist } = require('./group/Settings of Server/static')
 
 const { requestForNotLoggedIn } = require('./group/API/requestForNotLoggedIn')
-const { initialization } = require('./group/API/User/initializations')
-const { gettingCreatedEditTasks } = require('./group/API/Tasks/tasks')
 
-
-
-const { deleteAllOpenTasks } = require('./Base/Task/deleteAllOpenTasks')
-const { deleteAllDoneTasks } = require('./Base/Task/deleteAllDoneTasks')
-const { editTask } = require('./Base/Task/editTask')
 const { users } = require('./group/API/User/users')
-
-
-
-
-
+const { tasks } = require('./group/API/Tasks/tasks')
+const { logout } = require('./group/API/logut')
 
 
 app.use(morgan('dev'))
@@ -41,7 +30,8 @@ listeningPort(app)
 dist(app, express)
 requestForNotLoggedIn(app)
 users(app, client)
-gettingCreatedEditTasks(app, client)
+tasks(app, client)
+logout(app)
 
 
 
@@ -62,23 +52,9 @@ gettingCreatedEditTasks(app, client)
 
 
 
-app.get('/deleteAllOpenTask', async (req, res) => {
-  let result = await deleteAllOpenTasks(client)
-  res.send('complete')
-})
 
-app.get('/deleteAllDoneTask', async (req, res) => {
-  let result = await deleteAllDoneTasks(client)
-  res.send('complete')
-})
 
-app.delete('/deleteTask', async (req, res) => {
-  let result = await deleteTask(client, req.query.id)
-  res.send('complete')
-})
 
-app.delete('/logout', async (req, res) => {
-  await req.session.destroy()
-  res.sendStatus(200)
-})
+
+
 
