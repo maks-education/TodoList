@@ -1,8 +1,6 @@
-const { crypto } = require('./crypto')
+import { crypto } from "./crypto.js";
 
-
-function comparePsw (clientPsw, serverPsw) {
+export function comparePsw (clientPsw, serverPsw) {
     return clientPsw && crypto(clientPsw) === serverPsw 
      
 } 
-module.exports.comparePsw = comparePsw

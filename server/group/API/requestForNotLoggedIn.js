@@ -1,4 +1,4 @@
-function requestForNotLoggedIn (app) {
+export function requestForNotLoggedIn (app) {
     app.use(function (req, res , next) {
     const requestFor_NotLoggedIn = ['/register', '/login', '/isLoggedIn']
     if (req.session.userLogin) {
@@ -9,4 +9,4 @@ function requestForNotLoggedIn (app) {
       res.sendStatus(403)
     }
   })
-} module.exports.requestForNotLoggedIn = requestForNotLoggedIn
+}

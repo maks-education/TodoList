@@ -10,6 +10,7 @@
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -23,6 +24,7 @@
     "run": "^1.4.0"
   },
   "devDependencies": {
+    "@types/pg": "^8.6.5",
     "nodemon": "^2.0.15"
   }
 }

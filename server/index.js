@@ -1,23 +1,17 @@
-const express = require('express')
-const app = express()
+import express from 'express';
+const app = express();
 
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
+import { client } from './group/loaders/client.js';
 
-const { connectionBase } = require('./group/Settings of Server/connectBase')
-const { useCors } = require('./group/Settings of Server/useCors')
-const { cookie } = require('./group/Settings of Server/cookie')
-const { client } = require('./group/Settings of Server/client')
-const { port, listeningPort } = require('./group/Settings of Server/port')
-
-const { dist } = require('./group/Settings of Server/static')
-
-const { requestForNotLoggedIn } = require('./group/API/requestForNotLoggedIn')
-
-const { users } = require('./group/API/User/users')
-const { tasks } = require('./group/API/Tasks/tasks')
-const { logout } = require('./group/API/logut')
-
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import { useCors } from './group/loaders/useCors.js';
+import { connectionBase } from './group/loaders/connectBase.js';
+import { cookie } from './group/loaders/cookie.js';
+import { listeningPort } from './group/loaders/port.js';
+import { dist } from './group/loaders/static.js';
+import { requestForNotLoggedIn } from './group/API/requestForNotLoggedIn.js';
+import { apiRouter } from './routes/index.js';
 
 app.use(morgan('dev'))
 app.use(bodyParser.json());
@@ -29,32 +23,5 @@ listeningPort(app)
 
 dist(app, express)
 requestForNotLoggedIn(app)
-users(app, client)
-tasks(app, client)
-logout(app)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+apiRouter()

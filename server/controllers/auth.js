@@ -1,13 +1,13 @@
-const { getLoginUserFromBase } = require("../../../Base/getLoginUserFromBase");
-const { insertRegDataUser } = require("../../../Base/RegUserData/insertRegDataUser");
-const { selectUserByLogin } = require("../../../Base/selectLoginPassword/selectLoginPsw");
-const { checkValidRegisterPassword } = require("../../../checkValidRegisterPassword");
-const { comparePsw } = require("../../../comparePsw");
+import { selectUserByLogin } from "../Base/selectLoginPassword/selectLoginPsw.js";
+import { comparePsw } from "../comparePsw.js";
+import { getLoginUserFromBase } from "../Base/getLoginUserFromBase.js";
+import { insertRegDataUser } from "../Base/RegUserData/insertRegDataUser.js";
 
+import { client } from "../group/loaders/client.js"
 
-function initialization (app, client) {
+export class AuthController {
 
-    app.post('/login', async (req, res,) => {
+    async signIn (req, res) {
         let result = await selectUserByLogin(client, req.body.login);
         if (result.rows[0]){
           let compare = comparePsw(req.body.password, result.rows[0].password)
@@ -20,8 +20,9 @@ function initialization (app, client) {
       } else {
         res.sendStatus(400)
       }
-    })
-    app.post('/register', async (req, res) => {
+    }
+
+    async signUp (req, res) {
         let byLogin = await getLoginUserFromBase(client)
         let checkValidPsw = checkValidRegisterPassword(req.body.password)
 
@@ -31,13 +32,18 @@ function initialization (app, client) {
         } else {
             res.sendStatus(403)
         }
-    })
-    app.get('/isLoggedIn', (req, res) => {
+    }
+
+    isLoggedIn (req, res) {
         if (req.session.userLogin) {
           res.sendStatus(200)
         } else {
           res.sendStatus(400)
         }
-    })
+    }
+
+    async logout (req, res) {
+        await req.session.destroy()
+        res.sendStatus(200)
+    }
 }    
-module.exports.initialization = initialization

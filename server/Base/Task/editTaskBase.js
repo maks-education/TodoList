@@ -1,4 +1,4 @@
-async function editTask (client, task) {
+export async function editTaskBase (client, task) {
     try {
     return client.query('UPDATE tasks SET title = $2, completeDate = $3 WHERE id = $1', [task.id, task.title, task.completeDate])
     } catch (err) {
@@ -6,4 +6,3 @@ async function editTask (client, task) {
     }
   }
 
-module.exports.editTask = editTask

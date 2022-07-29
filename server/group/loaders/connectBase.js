@@ -1,7 +1,8 @@
-const { createTableRegUserData } = require("../../Base/RegUserData/createTable")
-const { createTableTask } = require("../../Base/Task/createTable")
+import { createTableTask } from "../../Base/Task/createTable.js"
+import { createTableRegUserData } from "../../Base/RegUserData/createTable.js"
 
-function connectionBase(client) {
+export function connectionBase(client) {
+  console.log(process.env.DB_PSW)
     client.connect().then(() =>{
     createTableTask(client)
     createTableRegUserData(client)
@@ -11,4 +12,4 @@ function connectionBase(client) {
     console.log(err)
   })
 }
-module.exports.connectionBase = connectionBase
+

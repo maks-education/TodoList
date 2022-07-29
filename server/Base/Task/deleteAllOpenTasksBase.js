@@ -1,8 +1,7 @@
-async function deleteAllOpenTasks(client) {
+export async function deleteAllOpenTasksBase(client) {
     try {
         return client.query('DELETE FROM tasks WHERE completedate is null')
     } catch (err) {
         console.log(err)
     }
 }
-module.exports.deleteAllOpenTasks = deleteAllOpenTasks
