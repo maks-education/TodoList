@@ -3,7 +3,7 @@ import { comparePsw } from "../comparePsw.js";
 import { getLoginUserFromBase } from "../Base/getLoginUserFromBase.js";
 import { insertRegDataUser } from "../Base/RegUserData/insertRegDataUser.js";
 
-import { client } from "../group/loaders/client.js"
+import { client } from "../loaders/client.js"
 
 export class AuthController {
 

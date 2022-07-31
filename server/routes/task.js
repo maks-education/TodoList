@@ -3,7 +3,7 @@ import { TaskController } from "../controllers/task.js"
 
 export function task(apiRouter) {
     const router = Router()
-    const taskController = new TaskController
+    const taskController = new TaskController()
     apiRouter.use('/task', router)
 
     router.post('', taskController.createdTask) 

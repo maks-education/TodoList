@@ -5,7 +5,7 @@ import { deleteTaskBase } from "../Base/Task/deleteTaskBase.js";
 import { deleteAllOpenTasksBase } from "../Base/Task/deleteAllOpenTasksBase.js";
 import { deleteAllDoneTasksBase } from "../Base/Task/deleteAllDoneTasksBase.js";
 
-import { client } from "../group/loaders/client.js"
+import { client } from "../loaders/client.js"
 
 
 export class TaskController {
