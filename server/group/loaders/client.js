@@ -12,11 +12,11 @@ export const client = new Client(
             }
         }
         : {
-            user: 'postgres',
-            host: 'localhost',
-            database: 'Todo_List',
-            password: '1973',
-            port: '5432'
+            user: process.env.DB_USER,
+            host: process.env.DB_HOST,
+            database: process.env.DB_NAME,
+            password: process.env.DB_PSW,
+            port: process.env.DB_PORT
         }
 );
 

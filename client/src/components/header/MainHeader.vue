@@ -98,7 +98,7 @@ export default {
 
     methods: {
         logout() {
-            request('logout', { method: 'DELETE'})
+            request('auth/logout', { method: 'DELETE'})
             location.reload()
         },
 

@@ -24,4 +24,4 @@ listeningPort(app)
 dist(app, express)
 requestForNotLoggedIn(app)
 
-apiRouter()
+app.use('/api', apiRouter(app))

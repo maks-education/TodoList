@@ -50,7 +50,7 @@ export default {
     methods: {
         async handleFormLogin() {
             this.isError = false
-            const resultCompare = await request('auth/signIn', {
+            const resultCompare = await request('auth', {
                 method: 'POST',
                 body: JSON.stringify(this.form),
                 credentials: 'include',

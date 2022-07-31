@@ -24,7 +24,7 @@ export class AuthController {
 
     async signUp (req, res) {
         let byLogin = await getLoginUserFromBase(client)
-        let checkValidPsw = checkValidRegisterPassword(req.body.password)
+        //let checkValidPsw = checkValidRegisterPassword(req.body.password)
 
     if (byLogin.rows[0].login !== req.body.login){
         await insertRegDataUser(client, req.body)
