@@ -1,10 +1,11 @@
-const { createHmac } = require ('crypto');
+import { createHmac } from 'crypto';
 
-function crypto(password) {
-const secret = process.env.USER_PASSWORD_SECRET
+export function crypto(password) {
+    const secret = 'qweqwe'
+    const hash = createHmac('sha256', secret)
+        .update(password)
+        .digest('hex');
 
-    return hash = createHmac('sha256', secret)
-               .update(password)
-               .digest('hex');
+    return hash
 }
-module.exports.crypto = crypto
+

@@ -94,7 +94,7 @@ export default {
     
     methods: {
         async getUserData(){
-             const response = await request('profile')
+             const response = await request('/user')
              this.userData = await response.json()
         },
 

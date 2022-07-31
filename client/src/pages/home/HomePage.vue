@@ -80,7 +80,7 @@ import { request } from "App/function js/api.js"
 import MainHeader from "App/components/header/MainHeader.vue";
 
 async function getResult () {
-  const result = await request('gettingtasks')
+  const result = await request('task/get')
   if (result.status === 200) {
     const resultjson = await result.json()
   resultjson.forEach(function (task) {
@@ -150,7 +150,7 @@ const openTaskdoneSelection = document.querySelector('.task-done .tasks');
 const searchTask = document.querySelector('.search-wrapper .search')
 
 searchTask.addEventListener("input", async function(){
-  const result = await request('gettingtasks')
+  const result = await request('task/get')
   const resultjson = await result.json()
     const textFilter = resultjson.filter(task => task.title.toUpperCase().includes(searchTask.value.toUpperCase()))
     openTaskopenSelection.innerHTML = ""

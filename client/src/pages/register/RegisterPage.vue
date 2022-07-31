@@ -73,7 +73,7 @@ import {request} from "App/function js/api";
         methods: {
                 async handleFormSave() {
                     if (this.isPasswordValid && Boolean(this.form.password)) {
-                    const isRegisterUp = await request('register', {
+                    const isRegisterUp = await request('auth/register', {
                         method: 'POST',
                         body: JSON.stringify(this.form),
                         headers: {

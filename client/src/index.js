@@ -39,7 +39,7 @@ new Vue ({
   },
 
   async created() {
-    const isLoggedInResp = await request('isLoggedIn');
+    const isLoggedInResp = await request('auth/isLoggedIn');
     try {    
       if (isLoggedInResp.status === 200){
       this.$root.isLoggedIn = true

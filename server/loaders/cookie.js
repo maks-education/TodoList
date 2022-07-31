@@ -1,6 +1,7 @@
-const session = require("express-session")
+import session from 'express-session';
 
-function cookie (app){
+
+export function cookie (app){
   app.use(session({
     secret: process.env.SESSION_CREATION_SECRET,
     rolling: true,
@@ -8,7 +9,5 @@ function cookie (app){
       secure: false, 
       maxAge: 1000 * 10 * 60 * 60,
     }
-  
   }))
 }
-module.exports.cookie = cookie

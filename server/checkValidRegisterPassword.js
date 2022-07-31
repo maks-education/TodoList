@@ -1,4 +1,4 @@
-function checkValidRegisterPassword (password) {
+export function checkValidRegisterPassword (password) {
     let specialCharacters = [ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]
     if (password.includes([0-9])){
         return true
@@ -13,4 +13,4 @@ function checkValidRegisterPassword (password) {
     } else {
         return false
     }
-} module.exports.checkValidRegisterPassword = checkValidRegisterPassword
+}
