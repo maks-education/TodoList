@@ -1,5 +1,7 @@
 import { selectUserByLogin } from "../Base/selectLoginPassword/selectLoginPsw.js";
 import { comparePsw } from "../comparePsw.js";
+import { crypto } from "../crypto.js";
+
 
 export class AuthController {
     constructor(userService) {
@@ -22,11 +24,19 @@ export class AuthController {
     }
 
     async signUp (req, res) {
-        let byLogin = await this.userService.getUser({ login: req.body.login })
+        // let byLogin = await this.userService.getUser({ login: req.body.login })
         //let checkValidPsw = checkValidRegisterPassword(req.body.password)
-
+let byLogin =  null
     if (byLogin === null){
-        await this.userService.createUser({ firstName: req.body.login })
+      const hash = await crypto(req.body.password)
+        await this.userService.createUser(
+        {
+            firstName: req.body.name,
+            lastName: req.body.surname,
+            login: req.body.login,
+            email: req.body.email,
+            password: hash
+        })
         res.sendStatus(200)
         } else {
             res.sendStatus(403)

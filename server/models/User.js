@@ -5,20 +5,34 @@ export class User extends Model {}
 
 export async function createUserModel() {
     User.init({
-        // Model attributes are defined here
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true
+        },
         firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        login: {
             type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true
         },
-        lastName: {
-            type: DataTypes.STRING
-            // allowNull defaults to true
+        email: {
+            type: DataTypes.STRING,
+            isEmail: true,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     }, {
-        // Other model options go here
-        sequelize, // We need to pass the connection instance
-        modelName: 'User' // We need to choose the model name
+        sequelize, 
+        modelName: 'userdata'
     });
 
     await User.sync()
