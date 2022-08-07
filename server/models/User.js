@@ -32,7 +32,7 @@ export async function createUserModel() {
         }
     }, {
         sequelize, 
-        modelName: 'userdata'
+        modelName: 'User'
     });
 
     await User.sync()

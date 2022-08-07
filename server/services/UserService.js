@@ -6,10 +6,14 @@ export class UserService {
         this.userModel = sequelize.models.User
     }
     
-    createUser({ firstName, lastName, login, email, password }) {
-        User.create({ // if you use "this.UserModel.create", he swears that he cannot read the "create" property of the "UserModel" object
-            firstName, lastName, login, email, password
-        })
+    async createUser({ firstName, lastName, login, email, password }) {
+        try {
+            await this.userModel.create({ // if you use "this.UserModel.create", he swears that he cannot read the "create" property of the "UserModel" object
+                firstName, lastName, login, email, password
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     getUser({ login }) {
