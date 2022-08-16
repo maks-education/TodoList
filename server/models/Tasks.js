@@ -15,7 +15,6 @@ export async function createTaskModel() {
         },
         author: {
             type: DataTypes.STRING,
-            allowNull: false
         },
         title: {
             type: DataTypes.STRING(256)

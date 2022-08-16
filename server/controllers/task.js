@@ -17,7 +17,7 @@ export class TaskController {
             try{
                 await this.taskService.creatingTask({
                 login: req.session.userLogin, 
-                author: req.body.author, 
+                author: req.body.author || req.session.userLogin, 
                 title: req.body.title, 
                 content: req.body.content, 
                 status: req.body.status, 
@@ -25,11 +25,10 @@ export class TaskController {
                 creationDate: req.body.creationDate, 
                 completeDate: req.body.completeDate
             })
-                res.status(200)
-                } catch{
-                    res.status(403)
+            res.status(200)
+                }catch{
+                    res.status(404)
                 }
-
         }
 
         async editTask(req,res) {
@@ -38,10 +37,9 @@ export class TaskController {
         }
 
         async getTask(req, res) {
-            let result = await this.taskService.getTask({
-                userlogin: req.session.userLogin})
+            let result = await this.taskService.getTask(req.session.userLogin)
                 console.log(`${'hello'} + ${result}`)
-            res.send('complete')
+            res.json(result)
         }
 
         async deleteTask(req, res) {
