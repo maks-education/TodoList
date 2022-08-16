@@ -14,9 +14,22 @@ export class TaskController {
     }
 
         async createdTask (req,res) {
-            let result = await this.taskService.creatingTask(req.session.userLogin, req.body.author, req.body.title,req.body.content, req.body.status, req.body.deadline, req.body.creationDate, req.body.completeDate
-            )
-            res.json(result)
+            try{
+                await this.taskService.creatingTask({
+                login: req.session.userLogin, 
+                author: req.body.author, 
+                title: req.body.title, 
+                content: req.body.content, 
+                status: req.body.status, 
+                deadline: req.body.deadline, 
+                creationDate: req.body.creationDate, 
+                completeDate: req.body.completeDate
+            })
+                res.status(200)
+                } catch{
+                    res.status(403)
+                }
+
         }
 
         async editTask(req,res) {

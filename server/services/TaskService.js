@@ -23,21 +23,15 @@ export class TaskService {
         }
     }
 
-    async creatingTask(loginP, authorP, titleP, contentP, statusP, deadlineP, creationDateP, completeDateP) {
+    async creatingTask(login, author, title, content, status, deadline, creationDate, completeDate) {
         try {
             await this.taskModel.create({
-                login: `${loginP}`, 
-                author: `${authorP}`, 
-                title: `${titleP}`, 
-                content: `${contentP}`,
-                status: `${statusP}`, 
-                deadline: `${deadlineP}`, 
-                creationDate: `${creationDateP}`, 
-                completeDate: `${completeDateP}`})
-            console.log(loginP, authorP, titleP)
+            login, author, title, content, status, deadline, creationDate, completeDate
+        })
+            console.log(login, author, title)
         } catch (error) {
-            console.error(`"Error, failed to create a task" ${loginP}, ${authorP}, ${titleP}, ${creationDateP}`)
-            console.log(loginP, authorP, titleP)
+            console.error(`"Error, failed to create a task" ${login}, ${author}, ${title}, ${creationDate}`)
+            console.log(login, author, title)
         }
     }
 
