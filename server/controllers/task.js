@@ -9,10 +9,14 @@ import { sequelize } from "../loaders/client.js"
 
 
 export class TaskController {
+    constructor(taskService){
+        this.taskService = taskService
+    }
 
         async createdTask (req,res) {
-            let result = await insertTable(sequelize, req.body, req.session.userLogin)
-            res.send('complete')
+            let result = await this.taskService.creatingTask(req.session.userLogin, req.body.author, req.body.title,req.body.content, req.body.status, req.body.deadline, req.body.creationDate, req.body.completeDate
+            )
+            res.json(result)
         }
 
         async editTask(req,res) {
@@ -21,8 +25,10 @@ export class TaskController {
         }
 
         async getTask(req, res) {
-            let result = await getTasksBase(sequelize, req.session.userLogin)
-            res.send(result.rows)
+            let result = await this.taskService.getTask({
+                userlogin: req.session.userLogin})
+                console.log(`${'hello'} + ${result}`)
+            res.send('complete')
         }
 
         async deleteTask(req, res) {

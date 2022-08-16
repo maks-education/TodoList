@@ -1,5 +1,4 @@
 import {sequelize} from "../loaders/client.js";
-import { User } from "../models/User.js";
 
 export class UserService {
     constructor() {
@@ -16,7 +15,20 @@ export class UserService {
         }
     }
 
-    getUser({ login }) {
-        return this.userModel.findByPk(login)
+    async getUser(loginReg) {
+        try {
+            let result = await this.userModel.findAll({
+                attributes: ['login', 'password'],
+                where: {login: `${loginReg}`}
+            })
+            if(result == 0){
+                return null
+            } else{
+                return result
+            }
+        } catch (err) {
+            console.log("Error, failed to get users by login")
+        }
+        
     }
 }

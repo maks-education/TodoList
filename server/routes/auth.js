@@ -8,7 +8,7 @@ export function auth(apiRouter) {
     const authController = new AuthController(userService)
     apiRouter.use('/auth', router)
 
-    router.post('', authController.signIn)
+    router.post('', authController.signIn.bind(authController))
     router.post('/register', authController.signUp.bind(authController))
     router.get('/isLoggedIn', authController.isLoggedIn)
     router.delete('/logout', authController.logout)

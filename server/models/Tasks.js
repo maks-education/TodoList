@@ -38,8 +38,7 @@ export async function createTaskModel() {
 
     }, {
         sequelize, 
-        modelName: 'tasks'
+        modelName: 'Task'
     });
-
     await Task.sync()
 }

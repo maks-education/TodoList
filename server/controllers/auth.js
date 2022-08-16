@@ -9,11 +9,12 @@ export class AuthController {
     }
     
     async signIn (req, res) {
-        let result = await selectUserByLogin(sequelize, req.body.login);
-        if (result.rows[0]){
-          let compare = comparePsw(req.body.password, result.rows[0].password);
+        let result = await this.userService.getUser(req.body.login)
+        console.log(result[0].login)
+        if (result[0].password){
+          let compare = comparePsw(req.body.password, result[0].password);
         if (compare) {
-          req.session.userLogin = result.rows[0].login;
+          req.session.userLogin = result[0].login;
           res.sendStatus(200)
         } else {
           res.sendStatus(400)
@@ -24,9 +25,8 @@ export class AuthController {
     }
 
     async signUp (req, res) {
-        // let byLogin = await this.userService.getUser({ login: req.body.login })
-        //let checkValidPsw = checkValidRegisterPassword(req.body.password)
-let byLogin =  null
+    let byLogin = await this.userService.getUser(req.body.login)
+    console.log(byLogin, req.body.login)
     if (byLogin === null){
       const hash = await crypto(req.body.password)
         await this.userService.createUser(
