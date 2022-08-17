@@ -27,7 +27,7 @@ export class UserService {
                 return result
             }
         } catch (err) {
-            console.log("Error, failed to get users by login")
+            console.log(`"Error, failed to get users by login" ${err}`)
         }
         
     }

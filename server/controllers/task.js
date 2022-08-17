@@ -8,6 +8,7 @@ import { deleteAllDoneTasksBase } from "../Base/Task/deleteAllDoneTasksBase.js";
 import { sequelize } from "../loaders/client.js"
 
 
+
 export class TaskController {
     constructor(taskService){
         this.taskService = taskService
@@ -16,7 +17,7 @@ export class TaskController {
         async createdTask (req,res) {
             try{
                 await this.taskService.creatingTask({
-                login: req.session.userLogin, 
+                executor: req.session.userLogin, 
                 author: req.body.author || req.session.userLogin, 
                 title: req.body.title, 
                 content: req.body.content, 
@@ -25,15 +26,30 @@ export class TaskController {
                 creationDate: req.body.creationDate, 
                 completeDate: req.body.completeDate
             })
-            res.status(200)
-                }catch{
-                    res.status(404)
+            res.sendStatus(200)
+                }catch(error){
+                    res.sendStatus(404)
+                    console.error(error)
                 }
         }
 
         async editTask(req,res) {
-            let result = await editTaskBase(sequelize, req.body)
-            res.send('complete')
+            try{
+                await this.taskService.updateTask({
+                taskId: req.body.id,
+                executor: req.session.userLogin, 
+                author: req.body.author || req.session.userLogin, 
+                title: req.body.title, 
+                content: req.body.content, 
+                status: req.body.status, 
+                deadline: req.body.deadline, 
+                completeDate: req.body.completeDate
+            })
+            res.sendStatus(200)
+            }catch(err){
+                console.error(err)
+                res.sendStatus(404)
+            }
         }
 
         async getTask(req, res) {
@@ -43,8 +59,13 @@ export class TaskController {
         }
 
         async deleteTask(req, res) {
-            let result = await deleteTaskBase(sequelize, req.query.id)
-            res.send('complete')
+            try {
+                await this.taskService.destroyTask({taskId: req.query.id})
+            res.sendStatus(200)
+            }catch(err){
+                res.sendStatus(404)
+                console.log(err)
+            }
         }
 
         async deleteAllOpenTasks(req, res) {

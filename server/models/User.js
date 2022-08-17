@@ -7,7 +7,8 @@ export async function createUserModel() {
     User.init({
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true
+            autoIncrement: true,
+            primaryKey: true
         },
         firstName: {
             type: DataTypes.STRING,
@@ -20,7 +21,7 @@ export async function createUserModel() {
         login: {
             type: DataTypes.STRING,
             allowNull: false,
-            primaryKey: true
+            unique: true
         },
         email: {
             type: DataTypes.STRING,
