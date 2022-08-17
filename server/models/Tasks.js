@@ -7,11 +7,11 @@ export async function createTaskModel() {
     Task.init({
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true
-        },
-        login: {//Can be changed to an "executive"
-            type: DataTypes.STRING(100),
+            autoIncrement: true,
             primaryKey: true
+        },
+        executor: {
+            type: DataTypes.STRING(100),
         },
         author: {
             type: DataTypes.STRING,

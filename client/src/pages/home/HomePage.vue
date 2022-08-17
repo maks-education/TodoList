@@ -90,6 +90,7 @@ async function getResult () {
       creationDate: task.creationdate,
       completeDate: task.completedate
     })
+    console.log(task.completeDate, task.creationDate)
   })
   } else {
     console.log('Failed to get tasks')
