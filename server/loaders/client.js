@@ -21,6 +21,7 @@ export function createDBClient() {
             password: process.env.DB_PSW,
             port: process.env.DB_PORT
         });
+
     return sequelize;
 }
 
