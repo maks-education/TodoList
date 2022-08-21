@@ -87,8 +87,8 @@ async function getResult () {
     drawTask({
       id: task.id,
       title: task.title,
-      creationDate: task.creationdate,
-      completeDate: task.completedate
+      creationDate: task.creationDate,
+      completeDate: task.completeDate
     })
     console.log(task.completeDate, task.creationDate)
   })
@@ -160,8 +160,8 @@ searchTask.addEventListener("input", async function(){
       drawTask({
         id: task.id,
         title: task.title,
-        creationDate: task.creationdate,
-        completeDate: task.completedate
+        creationDate: task.creationDate,
+        completeDate: task.completeDate
       });
     })
 })
