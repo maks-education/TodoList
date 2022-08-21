@@ -1,18 +1,15 @@
-import { createTableTask } from "../Base/Task/createTable.js"
-import { createTableRegUserData } from "../Base/RegUserData/createTable.js"
 import {createDBClient} from "./client.js";
 
-export function connectionBase() {
-  const client = createDBClient()
-  client.connect().then(() =>{
-    createTableTask(client)
-    createTableRegUserData(client)
+export async function connectionBase() {
+  const sequelize = createDBClient()
+  try {
+    await sequelize.authenticate()
     console.log('Database connected')
-  }).catch((err) => {
+  } catch (err) {
     console.log('Database connection error')
     console.log(err)
-  })
+  }
 
-  return client
+  return sequelize
 }
 

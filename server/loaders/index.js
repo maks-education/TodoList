@@ -8,13 +8,15 @@ import {dist} from "./static.js";
 import {listeningPort} from "./port.js";
 import {configLoader} from "./configLoader.js";
 import {middlewares} from "../middlwares/index.js";
+import {modelsLoader} from "./modelsLoader.js";
 
-export function loaders(app) {
+export async function loaders(app) {
     configLoader();
     loggingLoader(app);
     bodyParsersLoader(app);
     useCors(app);
-    connectionBase();
+    await connectionBase();
+    await modelsLoader();
     cookie(app);
     dist(app);
     middlewares(app);

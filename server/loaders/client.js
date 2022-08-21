@@ -1,28 +1,23 @@
-import pg from 'pg';
-const { Client } = pg;
+import Sequelize from "sequelize";
 
-let client;
+let sequelize;
 
 export function createDBClient() {
-    client = new Client(
+    sequelize = new Sequelize(
         process.env.DATABASE_URL
-            ? {
-                connectionString: process.env.DATABASE_URL,
-                ssl: {
-                    rejectUnauthorized: false
-                }
-            }
+            ? `postgres://${process.env.DATABASE_URL}`
             : {
-                user: process.env.DB_USER,
+                dialect: 'postgres',
+                username: process.env.DB_USER,
                 host: process.env.DB_HOST,
                 database: process.env.DB_NAME,
                 password: process.env.DB_PSW,
                 port: process.env.DB_PORT
             }
     );
-    return client;
+    return sequelize;
 }
 
 export {
-    client
+    sequelize
 }
