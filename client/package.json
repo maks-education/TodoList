@@ -19,6 +19,7 @@
     "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^3.0.0",
     "core-js": "^3.21.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^0.28.11",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
@@ -58,7 +59,6 @@
   },
   "homepage": "https://github.com/IgorKonovalov/HTML-JS_boilerplate#readme",
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "file-loader": "^6.2.0"
   }
 }
