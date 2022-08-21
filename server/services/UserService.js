@@ -19,7 +19,7 @@ export class UserService {
         try {
             let result = await this.userModel.findAll({
                 attributes: ['login', 'password'],
-                where: {login: `${loginReg}`}
+                where: {login: loginReg}
             })
             if(result == 0){
                 return null
