@@ -15,7 +15,6 @@ const router = new VueRouter({
       {path: '/home', component: HomePage, name: 'home', meta: {isSearchVisible: true, logo: 'TodoList'}},
       {path: '/register', component: RegisterPage, name: 'register', meta: {logo: 'Sign Up'}},
       {path: '/login', component: LoginPage, name: 'login', meta: {logo: 'Sign In'}},
-      {path: '/profile', component: ProfilePage, name: 'profile', meta: {logo: 'Profile'}},
     ],
 })
 

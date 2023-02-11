@@ -1,3 +1,4 @@
+
 import {sequelize} from "../loaders/client.js";
 
 export class UserService {
@@ -31,4 +32,22 @@ export class UserService {
         }
         
     }
+
+    async getUserData(loginReg) {
+        try {
+            let result = await this.userModel.findAll({
+                attributes: ['login', 'email'],
+                where: {login: loginReg}
+            })
+            if(result == 0){
+                return null
+            } else{
+                return result
+            }
+        } catch (err) {
+            console.log(`"Error, failed to get users by login" ${err}`)
+        }
+        
+    }
 }
+
