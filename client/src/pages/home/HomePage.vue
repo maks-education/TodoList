@@ -3,39 +3,54 @@
   <main-header />
     
   <div class="container">
-    <div class="add-task-container">
+    <div v-if="ShowAddTaskBlock" class="add-task-container">
       <div class="top-container_add-task">
         <div class="container-theme-date-author_add-task">
 
           <div class="input-add-theme">
             <div class="text-input-theme">Тема</div>
-            <input id="input-theme">
+            <input id="input-theme" v-model="form.title">
           </div>
 
           <div class="input-add-deadline">
-            <input type="date">
-          </div>
+            <div class="text-input-deadline">Дата</div>
+            <input id="input-date" type="date" v-model="form.deadline">
+          </div>  
 
           <div class="author">
-            author
+            <div class="author-placeholder">Автор</div>
+            <a class="icon-profile">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0C4.47581 0 0 4.47581 0 10C0 15.5242 4.47581 20 10 20C15.5242 20 20 15.5242 20 10C20 4.47581 15.5242 0 10 0ZM10 3.87097C11.9597 3.87097 13.5484 5.45968 13.5484 7.41935C13.5484 9.37903 11.9597 10.9677 10 10.9677C8.04032 10.9677 6.45161 9.37903 6.45161 7.41935C6.45161 5.45968 8.04032 3.87097 10 3.87097ZM10 17.7419C7.63306 17.7419 5.5121 16.6694 4.09274 14.9919C4.85081 13.5645 6.33468 12.5806 8.06452 12.5806C8.16129 12.5806 8.25806 12.5968 8.35081 12.625C8.875 12.7944 9.42339 12.9032 10 12.9032C10.5766 12.9032 11.129 12.7944 11.6492 12.625C11.7419 12.5968 11.8387 12.5806 11.9355 12.5806C13.6653 12.5806 15.1492 13.5645 15.9073 14.9919C14.4879 16.6694 12.3669 17.7419 10 17.7419Z" fill="black"/>
+              </svg>
+            </a>
+            <a class="author-login"></a>
           </div>
         </div>
 
         <div class="buttons-close_add-task-container">
-          <button class="close">
-            <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="close" @click="ShowAddTaskBlock=!ShowAddTaskBlock">
+            <svg  width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10.5477 0.999836L1.45226 9.99996" stroke="#505050" stroke-width="2" stroke-linecap="round"/>
             <path d="M1.45227 1L10.5477 9.99995" stroke="#505050" stroke-width="2" stroke-linecap="round"/>
             </svg>
-          </button>
+          </div>
         </div>
+      </div>
+      <div class="middle-container_add-task">
+        <div class="content-add-task">
+          <textarea id="textarea-content" v-model="form.content"></textarea>
+        </div>
+      </div>
+      <div class="bottom-container_add-task">
+        <div class="create-task" @click="createTask">Создать</div>
       </div>
     </div>
 
     <div class="task-block">
       <div class="menu-task-block">
         <div class="buttons_add-update">
-          <div class="add-task">Add task</div>
+          <div class="add-task" @click="ShowAddTaskBlock=true">Создать задачу</div>
         </div>
         <div class="open-done_list">
           <div class="open-list">Open list</div>
@@ -53,20 +68,19 @@
           </div>
         </div>
         <div class="tasks">
-          <div class="task">
+          <div v-for="item in items" :id="form.id" class="task">
             <div class="group_checkbox-title">
               <input type="checkbox">
-              <div class="title">Task</div>
+              <div class="title">{{ item.title }}</div>
             </div>
             <div class="group_time-trash">
-              <div>{{new Date().toLocaleDateString()}}</div>
-              <div class="trash">
+              <div>{{ new Date(item.deadline).toDateString(day, month, year) }}</div>
+              <div class="trash" @click="deleteTask(item.id)">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.76409 16.3125C1.76409 16.7601 1.95599 17.1893 2.29757 17.5057C2.63916 17.8222 3.10245 18 3.58552 18H14.5141C14.9972 18 15.4605 17.8222 15.802 17.5057C16.1436 17.1893 16.3355 16.7601 16.3355 16.3125V4.5H1.76409V16.3125ZM12.0855 7.3125C12.0855 7.16332 12.1495 7.02025 12.2633 6.91476C12.3772 6.80927 12.5316 6.75 12.6927 6.75C12.8537 6.75 13.0081 6.80927 13.122 6.91476C13.2358 7.02025 13.2998 7.16332 13.2998 7.3125V15.1875C13.2998 15.3367 13.2358 15.4798 13.122 15.5852C13.0081 15.6907 12.8537 15.75 12.6927 15.75C12.5316 15.75 12.3772 15.6907 12.2633 15.5852C12.1495 15.4798 12.0855 15.3367 12.0855 15.1875V7.3125ZM8.44266 7.3125C8.44266 7.16332 8.50663 7.02025 8.62049 6.91476C8.73435 6.80927 8.88878 6.75 9.0498 6.75C9.21083 6.75 9.36526 6.80927 9.47912 6.91476C9.59298 7.02025 9.65695 7.16332 9.65695 7.3125V15.1875C9.65695 15.3367 9.59298 15.4798 9.47912 15.5852C9.36526 15.6907 9.21083 15.75 9.0498 15.75C8.88878 15.75 8.73435 15.6907 8.62049 15.5852C8.50663 15.4798 8.44266 15.3367 8.44266 15.1875V7.3125ZM4.7998 7.3125C4.7998 7.16332 4.86377 7.02025 4.97763 6.91476C5.09149 6.80927 5.24592 6.75 5.40695 6.75C5.56797 6.75 5.7224 6.80927 5.83626 6.91476C5.95012 7.02025 6.01409 7.16332 6.01409 7.3125V15.1875C6.01409 15.3367 5.95012 15.4798 5.83626 15.5852C5.7224 15.6907 5.56797 15.75 5.40695 15.75C5.24592 15.75 5.09149 15.6907 4.97763 15.5852C4.86377 15.4798 4.7998 15.3367 4.7998 15.1875V7.3125ZM16.9427 1.12501H12.3891L12.0324 0.467584C11.9568 0.327034 11.8404 0.208807 11.6963 0.126202C11.5522 0.0435979 11.386 -0.000106452 11.2165 6.16384e-06H6.87927C6.71017 -0.000596081 6.54431 0.0429453 6.40069 0.125642C6.25707 0.208338 6.1415 0.326845 6.06722 0.467584L5.71052 1.12501H1.15695C0.995923 1.12501 0.841494 1.18427 0.727633 1.28976C0.613771 1.39525 0.549805 1.53832 0.549805 1.68751L0.549805 2.81251C0.549805 2.96169 0.613771 3.10476 0.727633 3.21025C0.841494 3.31574 0.995923 3.37501 1.15695 3.37501H16.9427C17.1037 3.37501 17.2581 3.31574 17.372 3.21025C17.4858 3.10476 17.5498 2.96169 17.5498 2.81251V1.68751C17.5498 1.53832 17.4858 1.39525 17.372 1.28976C17.2581 1.18427 17.1037 1.12501 16.9427 1.12501V1.12501Z" fill="#C1C1C1"/>
                 </svg>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -83,7 +97,8 @@ import 'App/style.css';
 
 import MainHeader from "App/components/header/MainHeader.vue";
 
-import { request } from '../../function js/api'
+import { request } from '../../../api.js'
+
 
 
 
@@ -92,18 +107,52 @@ export default {
     components: {MainHeader},
     data(){
       return{
-        items:[]
+        ShowAddTaskBlock: false,
+        items:[],
+        form: {
+          author: null,
+          title: null,
+          content: null,
+          deadline: null,
+          creationDate: new Date(),
+        }
       }
     },
     async mounted() {
       await this.getTasks()
-      console.log(this.items)
     },
 
     methods: {
       async getTasks(){
         const result = await request('task/get', { methods: 'GET' })
         this.items = await result.json()
+        console.log(this.items)
+      },
+
+      async createTask(){
+        await request('task', {
+          method: 'POST',
+          body: JSON.stringify(this.form),
+          headers: {
+            'Content-type':'application/json',
+          }
+        })
+        this.ShowAddTaskBlock = false
+        this.getTasks()
+      },
+
+      async deleteTask(id){
+        console.log(id)
+        await request('task/delete', {
+          method: 'DELETE',
+          body: JSON.stringify({
+            id: id
+          }),
+          headers: {
+            'Content-type':'application/json',
+          }
+        })
+        this.getTasks()
       }
     }
 }
@@ -118,13 +167,18 @@ export default {
   .add-task-container {
     position: absolute;
     display: flex;
+    flex-direction: column;
 
     right: 15px;
     bottom: 15px;
 
     width: 500px;
-    height: 570px;
+    height: 500px;
     z-index: 10;
+
+    -webkit-box-shadow: 0px 0px 35px 1px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 35px 1px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 35px 1px rgba(34, 60, 80, 0.2);
 
     border-radius: 10px;
     background-color: white;
@@ -143,49 +197,163 @@ export default {
     align-items: flex-start;
     width: 400px;
     height: 118px;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 15px;
   }
   
   .buttons-close_add-task-container {
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: row;
     width: 100px;
     height: 118px;
     margin: 9px 9px 0 0;
+    
+  }
 
+  .close {
+    cursor: pointer;
+  }
+  
+  .close:hover > svg > path {
+    stroke: #000000;
   }
 
   .input-add-theme {
     display: flex;
     align-items: center;
-    width: 400px;
+    width: 395px;
     height: 30px;
     margin: 0 0 10px 0;
+    border-radius: 10px;
   }
 
   .input-add-theme:hover {
-    background-color: rgba(207, 207, 207, 1);
+    background-color: #f0f0f0;
   }
 
   .text-input-theme {
     display: flex;
     align-items: center;
-    margin: 0 10px 0 0;
+    margin: 0 5px 0 0;
+    padding-left: 5px;
+    color: #acacac;
   }
 
   #input-theme {
     width: 380px;
     height: 20px;
+    padding: 0;
     background-color: transparent;
+    outline: none;
+    border: none;
   }
   
   .input-add-deadline {
     display: flex;
+    align-items: center;
+    height: 30px;
+    width: 170px;
+    border-radius: 10px;
     margin: 0 0 10px 0;
   }
 
+  .input-add-deadline:hover {
+    background-color: #f0f0f0;
+  }
+
+  .text-input-deadline {
+    display: flex;
+    align-items: center;
+    margin: 0 15px 0 0;
+    padding-left: 5px;
+    color: #acacac;
+  }
+
+  #input-date {
+    width: 105px;
+    height: 20px;
+    background-color: transparent;
+    outline: none;
+    text-align: center;
+    border: none;
+  }
+  
   .author {
     display: flex;
+    align-items: center;
+    height: 30px;
+    width: 170px;
+    border-radius: 10px;
     margin: 0 0 10px 0;
+  }
+
+  .author:hover {
+    background-color: #f0f0f0;
+  }
+  .author-placeholder {
+    display: flex;
+    align-items: center;
+    margin: 0 15px 0 0;
+    padding-left: 5px;
+    color: #acacac;
+  }
+
+  .icon-profile {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    z-index: 10;
+  }
+
+  .author-login {
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 18px;
+    border-radius: 0 8px 8px 0;
+    margin-left: -5px;
+    background-color: #e6e6e6;
+    
+  }
+
+  .middle-container_add-task {
+    display: flex;
+    width: 500px;
+    height: 300px;
+  }
+
+  .content-add-task {
+    display: flex;
+    width: 473px;
+    height: 290px;
+    margin: 10px 15px 0 12px;
+  }
+
+  #textarea-content{
+    border: none;
+    outline: none;
+    width: 473px;
+    height: 290px;
+    resize: none;
+  }
+
+  .bottom-container_add-task {
+    display: flex;
+    align-items: center;
+    height: 82px;
+  }
+
+  .create-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    margin-left: 25px;
+    background-color: #FFCE0B;
+    border-radius: 15px;
+    cursor: pointer;
   }
   .task-block {
     display: flex;
@@ -224,6 +392,8 @@ export default {
     height: 35px;
     
     border-radius: 10px;
+
+    cursor: pointer;
 
     background-color: rgba(255, 206, 11, 1)
 

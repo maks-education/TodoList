@@ -75,7 +75,7 @@
 
 <script>
 import MainHeader from "App/components/header/MainHeader.vue";
-import { request } from '../../function js/api';
+import { request } from '../../../api.js';
 export default {
     name: 'ProfilePage',
     components: {MainHeader},

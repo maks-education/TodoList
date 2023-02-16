@@ -5,7 +5,7 @@ import HomePage from "./pages/home/HomePage.vue"
 import VueRouter from 'vue-router'
 import LoginPage from "./pages/login/LoginPage.vue"
 import ProfilePage from "./pages/profilePage/ProfilePage.vue"
-import { request } from "App/function js/api.js"
+import { request } from "../api.js"
 
 Vue.use(VueRouter)
 

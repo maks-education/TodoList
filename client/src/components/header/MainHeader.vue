@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { request } from '../../function js/api'
+import { request } from '../../../api.js'
 
 export default {
     name: 'MainHeader',
@@ -162,6 +162,7 @@ export default {
         flex-wrap: wrap;
     }
     .logo-block{
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -214,6 +215,7 @@ export default {
         margin-right: 15px;
         padding: 0;
         border: 0;
+        cursor: pointer;
     }
 
     .icon-profile:hover > circle{
@@ -252,18 +254,19 @@ export default {
         border-radius: 10px;
         z-index: 10;
 
-        top: 80px;
-        right: 105px;
+        top: 60px;
+        right: 0;
         background-color: rgba(225, 225, 225, 1);
     }
 
     .profile-block {
         display: flex;
         flex-direction: column;
-        width: 400px;
+        width: auto;
         height: 150px;
         border-radius: 10px 10px 0 0;
         background-color: rgba(247, 247, 247, 1);
+        cursor: default;
     }
 
     .group_photo_login-email {
@@ -322,9 +325,14 @@ export default {
     .button-exit {
         display: flex;
         margin: 12px 12px 0 0;
+        cursor: pointer;
     }
 
-    .button-exit-svg:hover > rect {
+    .button-exit > svg {
+        cursor: pointer;
+    }
+
+    .button-exit:hover > svg > rect {
         fill: rgb(150, 182, 188);
         transition: all 300ms ease
     }

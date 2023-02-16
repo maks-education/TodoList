@@ -60,7 +60,8 @@ export class TaskController {
 
         async deleteTask(req, res) {
             try {
-                await this.taskService.destroyTask({taskId: req.query.id})
+                console.log(`${req.body.id}fhdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssgfhskdaghfdghfagdgfhadghfagshgfaskdgfhghjgadshkgfhasdfjadhgfhdashfgsdgfhdgfadghkfgdhagfhsdgfhjkdsgajkddfhesgfyukaguytduifgauiofguawfhjagdfyudsgfjksdgfhasgdfvayufghasgfhjsdgfjkdsghhfdshgal`)
+                await this.taskService.destroyTask({taskId: req.body.id})
             res.sendStatus(200)
             }catch(err){
                 res.sendStatus(404)

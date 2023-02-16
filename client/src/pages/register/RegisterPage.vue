@@ -53,7 +53,7 @@
 
 <script>
 
-import {request} from "App/function js/api";
+import { request } from "../../../api.js";
     export default {
         name: 'RegisterPage',
         data(){
